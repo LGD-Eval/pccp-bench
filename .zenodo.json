@@ -2,7 +2,7 @@
   "title": "PCCP-Bench: a judgeable, re-runnable test set for PCCP decisions",
   "description": "42 cases (32 public, 10 held-out commitments). go/hold/reject with reason tag and cited regulatory text. Judge closure and evidence logs ship inside the bundle.",
   "upload_type": "dataset",
-  "license": "mit",
+  "license": "cc-by-4.0",
   "version": "0.1.3",
   "creators": [
     {
