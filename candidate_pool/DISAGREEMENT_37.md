@@ -21,25 +21,25 @@
 
 | 题号 | 器械 | 被改的东西 | 我们的标签 | 引擎 | 触发规则 | 源文件 |
 |---|---|---|---|---|---|---|
-| `K251456-R4` | BrightHeart View Classifier v1.1 | 重训后直接发布新版本：没有与原模型做性能指标比较，也没有验证与确认记录 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K251456](https://www.accessdata.fda.gov/cdrh_docs/pdf51/K251456.pdf) |
-| `K251456-R5` | BrightHeart View Classifier v1.1 | 把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K251456](https://www.accessdata.fda.gov/cdrh_docs/pdf51/K251456.pdf) |
-| `K240290-R3` | AiMIFY | 为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf40/K240290.pdf) |
-| `K240290-R4` | AiMIFY | 把适应证从脑部 MRI 扩到脊柱 MRI | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf40/K240290.pdf) |
-| `K241561-R3` | MammoScreen BD | 把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf) |
-| `K241561-R4` | MammoScreen BD | 新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf) |
-| `K243684-R2` | BrightHeart View Classifier（K243684） | 扩妊娠年龄段只加数据、不重训也不与原模型比较就发布 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf) |
-| `K243684-R3` | BrightHeart View Classifier（K243684） | 允许用户在设备内修改 AI 生成的标注 DICOM | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf) |
-| `K243684-R4` | BrightHeart View Classifier（K243684） | 把用户人群扩到非专业人员/非产前超声环境（如助产士自助使用） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf) |
-| `K233955-R3` | Clarius OB AI | 只改后处理算法把图像看着更顺眼，不做与原模型的性能比较、也不做临床验证 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf) |
-| `K233955-R5` | Clarius OB AI | 从 B 模式扩到彩色多普勒/弹性成像模式下的自动测量 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf) |
-| `K233955-R6` | Clarius OB AI | 从凸阵探头扩到线阵/相控阵探头采集的数据 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf) |
-| `K250753-R2` | VELMENI for DENTISTS (V4D) | 重训后指标只对上一版报了数，没和原清关模型比，也没走预定义判据闸门就上线 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf) |
-| `K250753-R4` | VELMENI for DENTISTS (V4D) | 新增计划外的检测病种（如根尖周病变、牙周骨丧失） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf) |
-| `K250753-R5` | VELMENI for DENTISTS (V4D) | 把推理管线搬到本地边缘部署（脱离现有部署环境） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf) |
-| `K241891-R3` | ScreenDx | 调阈值把阳性率降下来减少报警，但不做统计评估、不出非劣证据 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf) |
-| `K241891-R5` | ScreenDx | 把适用人群扩到 ≤22 岁 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf) |
-| `K241891-R7` | ScreenDx | 把输入模态从 CT 扩到胸部 X 光片 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf) |
-| `K241561-R5` | MammoScreen BD | 把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf) |
+| `K251456-R4` | BrightHeart View Classifier v1.1 | 重训后直接发布新版本：没有与原模型做性能指标比较，也没有验证与确认记录 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K251456](https://www.accessdata.fda.gov/cdrh_docs/pdf25/K251456.pdf) |
+| `K251456-R5` | BrightHeart View Classifier v1.1 | 把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K251456](https://www.accessdata.fda.gov/cdrh_docs/pdf25/K251456.pdf) |
+| `K240290-R3` | AiMIFY | 为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
+| `K240290-R4` | AiMIFY | 把适应证从脑部 MRI 扩到脊柱 MRI | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
+| `K241561-R3` | MammoScreen BD | 把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R4` | MammoScreen BD | 新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K243684-R2` | BrightHeart View Classifier（K243684） | 扩妊娠年龄段只加数据、不重训也不与原模型比较就发布 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243684.pdf) |
+| `K243684-R3` | BrightHeart View Classifier（K243684） | 允许用户在设备内修改 AI 生成的标注 DICOM | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243684.pdf) |
+| `K243684-R4` | BrightHeart View Classifier（K243684） | 把用户人群扩到非专业人员/非产前超声环境（如助产士自助使用） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K243684](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243684.pdf) |
+| `K233955-R3` | Clarius OB AI | 只改后处理算法把图像看着更顺眼，不做与原模型的性能比较、也不做临床验证 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf23/K233955.pdf) |
+| `K233955-R5` | Clarius OB AI | 从 B 模式扩到彩色多普勒/弹性成像模式下的自动测量 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf23/K233955.pdf) |
+| `K233955-R6` | Clarius OB AI | 从凸阵探头扩到线阵/相控阵探头采集的数据 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K233955](https://www.accessdata.fda.gov/cdrh_docs/pdf23/K233955.pdf) |
+| `K250753-R2` | VELMENI for DENTISTS (V4D) | 重训后指标只对上一版报了数，没和原清关模型比，也没走预定义判据闸门就上线 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf) |
+| `K250753-R4` | VELMENI for DENTISTS (V4D) | 新增计划外的检测病种（如根尖周病变、牙周骨丧失） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf) |
+| `K250753-R5` | VELMENI for DENTISTS (V4D) | 把推理管线搬到本地边缘部署（脱离现有部署环境） | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K250753](https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf) |
+| `K241891-R3` | ScreenDx | 调阈值把阳性率降下来减少报警，但不做统计评估、不出非劣证据 | **hold/insufficient** | reject | `P-CRIT-03-acceptance-criteria-not-met` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf) |
+| `K241891-R5` | ScreenDx | 把适用人群扩到 ≤22 岁 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf) |
+| `K241891-R7` | ScreenDx | 把输入模态从 CT 扩到胸部 X 光片 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241891](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf) |
+| `K241561-R5` | MammoScreen BD | 把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查 | **hold/resubmit** | reject | `P-CRIT-02-intended-use-change` | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
 
 ## 手工复核怎么做（三步，不用我们的代码）
 
