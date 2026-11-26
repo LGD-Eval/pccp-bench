@@ -1,0 +1,73 @@
+name: External run submission
+description: 提交一次 PCCP-Bench 外部跑分（公开列自助，隐藏列由维护者代跑后回填）
+title: "[external-run] <队名> on PCCP-Bench 0.1.3"
+labels: ["external-run"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先跑完 `external_run_kit/CHECKLIST.md` 的三对照。**不带日志与 sha256 的提交不收**——这条对我们自己的提交也一样。
+  - type: input
+    id: team
+    attributes:
+      label: 队名或匿名标识
+      description: 用 `anon:<adapter_sha256 前 8 位>` 即可匿名
+    validations:
+      required: true
+  - type: input
+    id: adapter_sha256
+    attributes:
+      label: adapter_sha256
+      description: `sha256sum adapter.py` 的完整值
+    validations:
+      required: true
+  - type: input
+    id: archive_version
+    attributes:
+      label: 使用的归档版本与 DOI
+      placeholder: "0.1.3 / 10.5281/zenodo.24551199"
+    validations:
+      required: true
+  - type: input
+    id: zip_sha256
+    attributes:
+      label: 归档 zip 的 sha256（自证你用的是同一份字节）
+      placeholder: "5151fe7ffa48be46ad55201bf334b536320535805363fa81c3f93a809d942b83"
+    validations:
+      required: true
+  - type: input
+    id: scores
+    attributes:
+      label: 跑分输出（逐字粘 bench.py 的整行）
+      description: 形如 `队名: exact public=… masked=… tag=… gap=… sha=…`
+    validations:
+      required: true
+  - type: checkboxes
+    id: controls
+    attributes:
+      label: 三对照与一致性自检
+      options:
+        - label: 我跑了参考适配器，得到 exact public=0.9688 / masked=0.9688
+          required: true
+        - label: 我跑了空基线（一律答 go），得到 exact public=0.875
+          required: true
+        - label: 我跑了背题者适配器，masked 明显塌陷（约 0.125）
+          required: true
+        - label: 同一输入我连跑两次，两次输出一致
+          required: true
+        - label: 我的适配器没有读取 expected_verdict / expected_tag，也没有联网查 K 号答案
+          required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: 日志链接或粘贴
+      description: 把完整输出粘进来，或给一个可公开访问的链接（不要给需要登录的私有链接）
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 你认为这套题哪里有问题（可选）
+      description: 带原句的分歧最有价值；不带原句的分歧我们不收，这条也适用于我们自己
+    validations:
+      required: false
