@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCCP-Bench 发布前审查看板 · 2026-11-26</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#1a1f26;background:#f5f6f8}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.sub{color:#5b6674;font-size:13px;margin-bottom:22px}
+.hdr{background:#0f1720;color:#fff;border-radius:14px;padding:26px 28px;margin-bottom:26px}
+.hdr h1{color:#fff}
+.hdr .sub{color:#9fb0c0;margin-bottom:18px}
+.verdict{display:flex;gap:14px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.2px}
+.pass{background:#0e7a4f;color:#eafff4}
+.warn{background:#8a5a00;color:#fff6e0}
+.fail{background:#8d1f1f;color:#ffecec}
+.na{background:#2a3742;color:#a9bccd}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:26px 0}
+.card{background:#fff;border:1px solid #e3e7ec;border-radius:12px;padding:18px 18px 16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.card .why{color:#5b6674;font-size:13px;margin:6px 0 10px}
+.ev{font-size:12.5px;border-top:1px dashed #e3e7ec;padding-top:9px;color:#33414f;word-break:break-all}
+.ev b{color:#0f1720}
+.sec{margin:38px 0 0}
+.sec h2{font-size:18px;margin:0 0 4px;border-left:4px solid #0f1720;padding-left:10px}
+.sec p.lead{color:#5b6674;font-size:13px;margin:6px 0 14px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e3e7ec;border-radius:10px;overflow:hidden;font-size:13px}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid #eef1f4;vertical-align:top}
+th{background:#fafbfc;font-weight:600;color:#33414f}
+tr:last-child td{border-bottom:none}
+.ok{color:#0e7a4f;font-weight:600}
+.bad{color:#8d1f1f;font-weight:600}
+.mid{color:#8a5a00;font-weight:600}
+.bars{background:#fff;border:1px solid #e3e7ec;border-radius:12px;padding:18px 20px}
+.bar{display:grid;grid-template-columns:210px 1fr 74px;align-items:center;gap:12px;margin:9px 0}
+.bar .lb{font-size:13px;color:#33414f}
+.bar .tk{height:16px;background:#eef1f4;border-radius:8px;overflow:hidden}
+.bar .fl{height:100%;border-radius:8px}
+.bar .vl{font-size:12.5px;text-align:right;color:#5b6674;font-variant-numeric:tabular-nums}
+.note{background:#fff8e6;border:1px solid #f0dca8;border-radius:10px;padding:13px 15px;font-size:13px;color:#5c4708;margin:14px 0}
+.hard{background:#fff1f1;border:1px solid #f2c9c9;border-radius:10px;padding:13px 15px;font-size:13px;color:#6b1515;margin:14px 0}
+code{background:#f2f4f7;border-radius:4px;padding:1px 5px;font-size:12.5px}
+.foot{color:#8a95a3;font-size:12px;margin-top:34px;border-top:1px solid #e3e7ec;padding-top:14px}
+a{color:#0b5cad;text-decoration:none;border-bottom:1px solid rgba(11,92,173,.25)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <h1>PCCP-Bench 发布前审查看板</h1>
+  <div class="sub">2026-11-26（第二次修订）· 对象：v0.1.3 归档 + 37 题候选池 · 九道门逐条给证据，不给形容词</div>
+  <div class="verdict">
+    <span class="pill pass">v0.1.3 归档：PASS</span>
+    <span class="pill warn">37 题候选池：不通过（缺人类外队与第二标注人）</span>
+    <span class="pill warn">外队实测：PARTIAL-WAIVED（仅机器级）</span>
+    <span class="pill pass">CI 12 步：全绿（GitHub 自己的机器）</span>
+  </div>
+</div>
+
+<div class="note"><b>本版最重要的一次自我更正：</b>37 道题的 FDA PDF 外链，目录全部错位一位（写 <code>pdf51</code>，正解 <code>pdf25</code>），即"引用直达"这一门此前其实是<b>红的</b>。已全部改为 <code>pdf&lt;K 号前两位&gt;</code>，七台器械逐一实测可打开，并把该规则写进 CI 断言，同类错误不能再进来。</div>
+
+<div class="sec">
+  <h2>九道门：当前状态与证据</h2>
+  <p class="lead">每张卡只写三件事：判到哪一档、凭什么、证据在哪。"未做"照实标，不折算成"部分完成"。</p>
+  <div class="grid">
+
+    <div class="card">
+      <h3>S0 前提与检索面 <span class="pill pass">PASS</span></h3>
+      <div class="why">做什么、不做什么、检索面都必须先落字，否则后面所有断言无锚。</div>
+      <div class="ev"><b>证据：</b>检索面（PubMed / npj Digit. Med. / Radiology:AI / FDA CDRH / GitHub）+ 关键词 + 日期写死在 <a href="https://github.com/LGD-Eval/pccp-bench/blob/main/LANDSCAPE_20261126.md">LANDSCAPE_20261126.md</a>；"可以说什么/不可以说什么是"单列一节。<br><b>结论限度：</b>本检索面 5 个可比对象、0 个同型，<b>不得说"最先进"</b>。</div>
+    </div>
+
+    <div class="card">
+      <h3>S1 引证直达 <span class="pill warn">部分（刚修）</span></h3>
+      <div class="why">每条对外断言都要有能直接打开的原文；打不开等于没引。</div>
+      <div class="ev"><b>本轮实测：</b>37 条 PDF 链接目录全错→已改；7 台器械逐台实拉正文确认（K251456/243684/233955/240290/241561/250753/241891）。<br><b>仍未闭环：</b>FDA 对<b>客户端直连</b>仍返回 404（Akamai），只有服务端抓取可达 —— 这一条对外必须写成"服务端可取"，不能写成"人人可点开都行"。</div>
+    </div>
+
+    <div class="card">
+      <h3>S2 事实与数字 <span class="pill pass">PASS</span></h3>
+      <div class="why">每个数字要么可复算，要么标明适用域。</div>
+      <div class="ev"><b>已标明适用域：</b>0.9688 仅在 0.1.3 自身 32 题成立；新抽 37 题实测参考裁判与标签一致 <b>18/37 = 0.486</b>；空基线 <b>13/37 = 0.351</b>。<br><b>归档：</b>zip sha256 <code>5151fe7f…</code>，27 叶子逐字节对 MANIFEST，Merkle 根在 CI 复算。</div>
+    </div>
+
+    <div class="card">
+      <h3>S3 红队反照 <span class="pill pass">PASS</span></h3>
+      <div class="why">先假设我们会撒谎，再找漏洞；找到的要写进对外文件。</div>
+      <div class="ev"><b>已做：</b>引文关键词闸门一次查出 8 条可疑 → 2 条真缺陷（只抄 Modification 列、漏抄同表 Testing Methods）已补；<b>19 条判据轴分歧逐题公开</b>（<a href="https://github.com/LGD-Eval/pccp-bench/blob/main/candidate_pool/DISAGREEMENT_37.md">DISAGREEMENT_37.md</a>）。<br><b>反照结论：</b>我们内部两个部件在 19 道题上打架，且以"公开"而非"改数字"处理。</div>
+    </div>
+
+    <div class="card">
+      <h3>S4 外人/外队实测 <span class="pill warn">PARTIAL-WAIVED</span></h3>
+      <div class="why">自己跑通不算；换人、换机、无凭据跑通才算。</div>
+      <div class="ev"><b>有：</b>Muse 在独立环境跑 0.1.3，public 0.9688 / masked 0.9688 / tag 1.0、10 项 commitment PASS —— 记为 <b>机器级外部证据（A17）</b>，不算人类外队。<br><b>无：</b>人类外队 0 队。按标准该门记 PARTIAL，整体判 <b>PARTIAL-WAIVED</b>，永远不记 PASS，且对外只能说"在独立主机上可复现"，不能说"外部专家验证"。</div>
+    </div>
+
+    <div class="card">
+      <h3>S5 可视化 <span class="pill pass">PASS</span></h3>
+      <div class="why">给人看的东西要能一眼看懂，且不依赖内网与凭据。</div>
+      <div class="ev"><b>交付：</b>本看板 + 对外一页纸（单文件 HTML，11.2 KB，无外链依赖）+ 37 题正文表 + 分数对照条。<br><b>自检：</b>无内网地址、无凭据、无外部 JS。</div>
+    </div>
+
+    <div class="card">
+      <h3>S6 外部 AI 反审 <span class="pill warn">CONDITIONAL</span></h3>
+      <div class="why">换一个模型读同一批公开材料，看它能不能推翻我们。</div>
+      <div class="ev"><b>已做：</b>SiliconFlow / DeepSeek-V3 只读公网材料，结论 <b>CONDITIONAL</b>（曾指出"0.9688 无证据"，促成 0.1.2 补日志）。<br><b>并列展示：</b>机器判据 PASS 与外部 AI 的 CONDITIONAL 不合并成一句话。</div>
+    </div>
+
+    <div class="card">
+      <h3>S7 现状复核 <span class="pill fail">FAIL（外部原因）</span></h3>
+      <div class="why">发布物在上游是否仍然可达，每次都要重测。</div>
+      <div class="ev"><b>今日实测：</b>Zenodo 记录页与 DOI 均返回 <b>"Checking your browser…" 反爬页</b>（此前一阵为 503），API 被 robots.txt 拒；GitHub 本机直连不稳（200/超时/连接重置交替），但服务端抓取正常。<br><b>处置：</b>CI 已改为 Zenodo 重试 + 仓库内<b>字节相同镜像</b>兜底，并标 <code>SOURCE=mirror</code>；<b>不宣称 Zenodo 在线</b>。</div>
+    </div>
+
+    <div class="card">
+      <h3>S8 GitHub 外人角度全量实测 <span class="pill pass">PASS</span></h3>
+      <div class="why">我们的贡献若在 GitHub 上，就要在别人的基础设施上被跑一遍。</div>
+      <div class="ev"><b>做法：</b><a href="https://github.com/LGD-Eval/pccp-bench/actions">Actions</a> 每次 push 与每周一 03:23 UTC：取归档 → 校 sha256 → 解包 → 逐字节核 MANIFEST → 复算 Merkle → 跑参考适配器并断言 0.9688 → 校验 19 条分歧记录（含 PDF 目录规则）→ 自测 compare.py。<br><b>最近一次：</b>12 步全 success；失败的历史 run 保留不删。</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数字对照（同一台子，两种题面）</h2>
+  <p class="lead">这张图是本次审查里最该看的一张：它说明 0.9688 的适用域有多窄。</p>
+  <div class="bars">
+    <div class="bar"><div class="lb">参考裁判 @ 0.1.3 自身 32 题</div><div class="tk"><div class="fl" style="width:96.88%;background:#1f6feb"></div></div><div class="vl">0.9688</div></div>
+    <div class="bar"><div class="lb">参考裁判 @ 新抽 37 题（改标签前）</div><div class="tk"><div class="fl" style="width:67.6%;background:#5b6674"></div></div><div class="vl">0.676</div></div>
+    <div class="bar"><div class="lb">参考裁判 @ 新抽 37 题（改标签后）</div><div class="tk"><div class="fl" style="width:48.6%;background:#c2410c"></div></div><div class="vl">0.486</div></div>
+    <div class="bar"><div class="lb">一律答 go 的空基线 @ 37 题</div><div class="tk"><div class="fl" style="width:35.1%;background:#8a5a00"></div></div><div class="vl">0.351</div></div>
+    <div class="bar"><div class="lb">背题者 masked（防背题下界）</div><div class="tk"><div class="fl" style="width:12.5%;background:#8d1f1f"></div></div><div class="vl">0.125</div></div>
+  </div>
+  <div class="hard"><b>因此对外只能这样说：</b>"0.9688 on PCCP-Bench 0.1.3's own 32 public cases, our own reference implementation"。单独出现 0.9688 即违规；把它写成"判定能力"即越界。</div>
+</div>
+
+<div class="sec">
+  <h2>链接直达实测（2026-11-26 16:49，两层分别测）</h2>
+  <p class="lead">"能直达"必须分两栏说：我们自己这台机器（客户端）与服务端抓取。只报对自己有利的一栏就是撒谎。</p>
+  <table>
+    <tr><th>对象</th><th>客户端直连</th><th>服务端抓取</th><th>备注</th></tr>
+    <tr><td>FDA 决策 PDF（7 台器械）</td><td class="bad">404（Akamai 拦）</td><td class="ok">200，正文可读</td><td>目录已修正为 <code>pdf&lt;前两位&gt;</code>；此前 37 条全错</td></tr>
+    <tr><td>GitHub 仓库 / blob / Issue</td><td class="mid">不稳（200 / 超时 / 重置交替）</td><td class="ok">200</td><td>本机直连不可靠，非仓库问题</td></tr>
+    <tr><td>Zenodo 记录页与 DOI</td><td class="bad">反爬页 / 503</td><td class="bad">"Checking your browser"</td><td>上游反爬；CI 已加镜像兜底</td></tr>
+    <tr><td>Zenodo API</td><td class="bad">不可用</td><td class="bad">robots.txt 拒绝</td><td>不要绕过；用镜像与 DOI 元数据</td></tr>
+    <tr><td>AEGIS 论文页（nature.com）</td><td class="ok">200</td><td class="ok">可读</td><td>竞品对照引用</td></tr>
+    <tr><td>RSNA 论文页</td><td class="mid">403（反爬）</td><td class="ok">可读</td><td>竞品对照引用</td></tr>
+  </table>
+  <div class="note">诚实结论：<b>"任何人点开就一定能读"目前不成立</b>，能成立的是"服务端/浏览器环境下可读；客户端自动化脚本会被拦"。对外写引用时必须带这句限定，否则就是替 FDA 与 Zenodo 背书。</div>
+</div>
+
+<div class="sec">
+  <h2>尚未通过的门（打印出来贴在墙上）</h2>
+  <p class="lead">这四项不是"待优化"，是"没有就不能叫论文级基准"。</p>
+  <table>
+    <tr><th>项</th><th>现状</th><th>为什么不能绕过</th></tr>
+    <tr><td>第二标注人 + κ</td><td class="bad">0 人 / 0 次</td><td>现有 37 条标签全部来自一人；无 κ 就无法区分"我们判断一致"与"我们运气一致"</td></tr>
+    <tr><td>人类外队实跑</td><td class="bad">0 队</td><td>机器级复跑只能证明"换主机能跑"，不能证明"别人能独立判"</td></tr>
+    <tr><td>专家签字</td><td class="bad">0 份</td><td>判据轴（越界＝另交 vs 越界＝禁止）是政策问题，必须有人签字认定</td></tr>
+    <tr><td>题量</td><td class="mid">42 + 37 候选</td><td>37 题是非随机便利抽样，报分不得外推为"整体合规率"</td></tr>
+  </table>
+  <div class="hard"><b>因此：</b>候选池<b>不冻结、不铸 DOI、不并入归档</b>。对外只邀挑错，不能邀引用。0.1.3 归档不受影响（字节未动，仍可引用）。</div>
+</div>
+
+<div class="sec">
+  <h2>复跑入口（每条都可执行，不是描述）</h2>
+  <table>
+    <tr><th>要做什么</th><th>命令 / 链接</th></tr>
+    <tr><td>验归档字节与 Merkle 根</td><td>GitHub Actions 每次 push 自动跑；或本地 <code>python 13_站位_20261126/audit_final.py</code></td></tr>
+    <tr><td>复现 0.9688</td><td><code>cd dataset &amp;&amp; python bench.py --submit adapter_reference.py</code></td></tr>
+    <tr><td>复核 19 条分歧</td><td>开 <a href="https://github.com/LGD-Eval/pccp-bench/blob/main/candidate_pool/DISAGREEMENT_37.md">DISAGREEMENT_37.md</a>，点 PDF → 搜原句 → 自判一句</td></tr>
+    <tr><td>拿别人的分对比</td><td><code>python external_run_kit/compare.py 你的结果.json</code></td></tr>
+    <tr><td>引用归档</td><td><a href="https://github.com/LGD-Eval/pccp-bench/blob/main/CITATION.cff">CITATION.cff</a>（含两条限制语）</td></tr>
+  </table>
+</div>
+
+<div class="foot">
+看板自述：本文件单文件、无外部依赖、无内网地址、无凭据。数字与链接状态均来自 2026-11-26 当日实测（客户端与服务端两层分别记录）。<br>
+对应报告：<code>审查报告_PCCP_0.1.3.md</code>（第 10 节为当日增量）· 归档 DOI 10.5281/zenodo.24551199（当前受上游反爬影响，改用镜像与 DOI 元数据核对）。
+</div>
+
+</div>
+</body>
+</html>
