@@ -1,5 +1,7 @@
 # PCCP-Bench
 
+![verify-archive](https://github.com/LGD-Eval/pccp-bench/actions/workflows/verify-archive.yml/badge.svg)   ![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24551199.svg)
+
 一个**可判定、可复跑、分数可追到原始输出**的测题集，只问一件事：对一次模型变更，PCCP（Predetermined Change Control Plan）该判 **go / hold / reject** 中的哪一个。
 
 **当前版本 0.1.3 · DOI [10.5281/zenodo.24551199](https://doi.org/10.5281/zenodo.24551199)**（concept DOI [10.5281/zenodo.24550266](https://doi.org/10.5281/zenodo.24550266)）
@@ -76,7 +78,28 @@ Assurance Instrument Test Bench（试真台）的 `presets/pccp-bench.json` 把�
 
 ## 字节在归档里，不在本仓
 
-归档字节一旦进仓，冻结根与包内路径要跟着改，反而多一层可能对不上的地方。本仓只放发布流程与元数据。
+归档字节一旦进仓，冻结根与包内路径要跟着改，反而多一层可能对不上的地方。本仓只放发布流程、元数据与外部跑分工具包（`external_run_kit/`），归档字节仍在 Zenodo。
+
+## 第三方基础设施上的复跑（不是我们自己说能跑）
+
+仓库里有一个 CI 作业 [`.github/workflows/verify-archive.yml`](https://github.com/LGD-Eval/pccp-bench/blob/main/.github/workflows/verify-archive.yml)，
+**跑在 GitHub 自己的机器上**，每次改动和每周一自动执行四件事：
+
+1. 从 Zenodo 下载归档（`records/24551199`）
+2. `sha256sum -c` 校验归档字节（`5151fe7f…`）
+3. 解包后逐字节核 MANIFEST，并按冻结规则**重算 27 叶子 Merkle 根**，必须等于 `0f1e697b60ea39fa…`
+4. 在 `dataset/` 跑参考适配器，`exact public` 与 `masked` 必须都是 0.9688
+
+任何一项不符就红。当前状态见 [最新一次运行](https://github.com/LGD-Eval/pccp-bench/actions/workflows/verify-archive.yml)。
+
+这条能说明的是：**归档、冻结根、参考分数在别人的机器上成立**，不需要信我们任何一句话。
+它不能说明的是：题出得好、标签都对、有同行评议——那是另外三件事，别混着读。
+
+## 想当"外部队"（跑分、或只是找茬）
+
+工具包在 [`external_run_kit/`](https://github.com/LGD-Eval/pccp-bench/tree/main/external_run_kit)：
+适配器骨架、外部实跑协议、提交前自检清单、只增不删的台账。公开列五条命令自助；隐藏列我们离线代跑、48 小时内交回逐题文件。
+入口只有一个：[Issue #1 公开认领](https://github.com/LGD-Eval/pccp-bench/issues/1)——公开认领是为了可追溯，不搞私下排队。
 
 ## 裁判闭包 `judges/` 的来源（外人常问）
 
