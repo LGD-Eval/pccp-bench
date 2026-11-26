@@ -1,4 +1,8 @@
-# 候选池 v2（未冻结，未发布）
+# 候选池 v2.3（未冻结，未发布）
+
+> **更正 2026-11-26**：v2.2 里 17 道越界题标的 `reject` 是错的，已改判 `hold/resubmit`。
+> 依据我们自己的 `DECISION_reject_vs_hold.md`（§515C(b) 不覆盖≠禁止，只是必须另交）。详见 [`ERRATA_20261126.md`](ERRATA_20261126.md)。
+> 同时更正：这里原先写的「算式投影 0.519」已被**实测**取代——空基线 0.351，参考裁判与本表标签只一致 **18/37 = 0.486**。
 
 这 37 道题**不是** PCCP-Bench 0.1.3 的一部分，也不在 Zenodo 归档里。放出来只为一件好事：**在我们冻结之前让别人挑错**。
 
@@ -8,7 +12,7 @@
 |---|---|
 | 冻结根 / DOI | **无**——没有冻结，没有发布 |
 | 标注 | **单人**（LGD）；第二标注人未到位（见 [Issue #2](https://github.com/LGD-Eval/pccp-bench/issues/2)、`annotation/ANNOTATION_PROTOCOL_v1.md`） |
-| 数量 | **37 题：`go 13 / hold 7 / reject 17`**；7 台器械、5 个器械族 |
+| 数量 | **37 题：`go 13 / hold 24（resubmit 17 · insufficient 7）/ reject 0`**；7 台器械、5 个器械族 |
 | 引文 | 每题都有 FDA 决策文件正文逐字句；**"这句确实在 PDF 里"必须由人打开 PDF 搜一遍**，我们不代你确认 |
 
 ## 分布（族 / 器械 / 题）
@@ -24,21 +28,30 @@
 来源 PDF 全部可直点，前缀均为 `https://www.accessdata.fda.gov/cdrh_docs/`：
 `pdf25/K251456`、`pdf24/K243684`、`pdf23/K233955`、`pdf24/K240290`、`pdf24/K241561`、`pdf25/K250753`、`pdf24/K241891`。
 
-## 为什么 reject 要占近一半
+## 四类标签（v2.3 起）
 
-0.1.3 的公开列 32 题里 `go 28 / hold 4 / reject 0`，**"一律答 go"就能拿 0.875**——这是台子最硬的结构缺陷。v2.2 把 `reject` 拉到 17 道，全部落在 FDA 文件里写得明明白白的硬边界：
+三类装不下这个场景：`hold` 同时装「材料没做」和「根本不该走这条路」，`reject` 在读计划文本的场景里自然为空。所以立第四类：
 
-| 类型 | 例子（都是原文边界） |
-|---|---|
-| 患者人群越界 | 恒牙 / ≥15 岁（K250753）、>22 岁（K241891）、经腹探头（K251456） |
-| 模态/输入越界 | `Clarius OB AI is intended for use in B-Mode only`；`The input to ScreenDx is a DICOM-compliant lung CT scan` |
-| 器械绑定越界 | `not a stand-alone software device`；非 Clarius 第三方超声机 |
-| 功能越界 | `no localization information and there is no … annotations`（ScreenDx）；`Annotated DICOM files … cannot be modified by the user`（BrightHeart） |
-| 适应证越界 | `None of the changes shall result in a change to the Indications for Use`（AiMIFY）；`not intended to rule-out or rule-in lung fibrosis` |
-| 部署越界 | `No changes are made to the deployment environment or inference pipeline`（VELMENI） |
-| 检测病种越界 | 计划只含龋齿/修复体/固定桥/种植体，新增根尖周病变即范围外（K250753） |
+| 类别 | 含义 | 条数 |
+|---|---|---|
+| `go` | 计划内，要件齐备 | 13 |
+| `hold / insufficient` | 计划内，但缺必要步骤或判据未评估 | 7 |
+| `hold / resubmit` | 计划未覆盖本变更，**必须另交新申报**（不是禁止） | 17 |
+| `reject` | 禁止性行为（§515C(c) 那类：拿修改版当 predicate、无 PCCP 却宣称覆盖） | 0 |
 
-**算式投影**：`(28+13)/(42+37) = 0.519`——一律答 go 从 **0.875 降到约 0.52**。这是算式，不是实测；实测要等冻结重跑。
+0.1.3 公开列 `go 28 / hold 4 / reject 0`，所以「一律答 go」能拿 0.875。候选池把这 17 道越界题加进来，是为了让「不读文件就答题」掉下去。
+
+**注意措辞**：不要写「填补了 reject 空洞」。`reject` 现在是 0，这是**类别设计问题**，不是成绩；我先前那样写是错的，已在 `ERRATA_20261126.md` 更正。
+
+## 实测（不是算式）
+
+| 指标 | 值 | 怎么测的 |
+|---|---|---|
+| 一律答 go 的空基线 | **13/37 = 0.351** | 真跑：每题恒答 `go` |
+| 参考裁判 vs 本表标签（改标签前） | 25/37 = 0.676 | `judge_pccp.py` 的 `evaluate()` |
+| 参考裁判 vs 本表标签（改标签后） | **18/37 = 0.486** | 同上 |
+
+**这两行比标签本身重要**：0.9688 只在 0.1.3 自身 32 题上成立，换成从 FDA 原文新抽的题就掉到 0.486。原因是引擎 `P-CRIT-02` 把「动适应证/人群/模态」直接判 Veto（reject），而我们的口径是「另交」（hold/resubmit）——**已知判据轴分歧，不是笔误**。
 
 ## 冻结门槛三查（今天）
 
@@ -46,10 +59,10 @@
 |---|---|
 | ① 第二标注人完成并算出 κ（≥0.40 继续，≥0.60 才写"实质一致"） | **✗ 0 人、0 次** |
 | ② 每句原句两人各自能在 PDF 里搜到 | ✗ 仅我一人搜过 |
-| ③ `reject` ≥12 且族 ≥3 | **✓ 17 道 / 5 族** |
+| ③ `resubmit` >=12 且族 >=3 | **✓ 17 道 / 5 族**（原门槛写的是 `reject`，该条随标签更正一并作废） |
 | （附加）全部题带逐字引文 | ✓ 37/37 |
 
-**所以：不冻结、不发 0.1.4。** 第 ③ 条刚满足，①②卡在人。
+**所以：不冻结、不发 0.1.4。** 第 ③ 条满足，①②卡在人。候选池只有在「第二标注人 + κ」落地后才会进归档。
 
 ## 已知薄弱处（先说，不等你发现）
 
