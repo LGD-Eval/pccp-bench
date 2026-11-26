@@ -1,6 +1,6 @@
-# 候选池 v1（未冻结，未发布）
+# 候选池 v2（未冻结，未发布）
 
-这 24 道题**不是** PCCP-Bench 0.1.3 的一部分，也不在 Zenodo 归档里。放出来只为一件好事：**在我们冻结之前让别人挑错**。
+这 36 道题**不是** PCCP-Bench 0.1.3 的一部分，也不在 Zenodo 归档里。放出来只为一件好事：**在我们冻结之前让别人挑错**。
 
 ## 状态（照实说）
 
@@ -8,46 +8,59 @@
 |---|---|
 | 冻结根 / DOI | **无**——没有冻结，没有发布 |
 | 标注 | **单人**（LGD）；第二标注人未到位（见 [Issue #2](https://github.com/LGD-Eval/pccp-bench/issues/2)、`annotation/ANNOTATION_PROTOCOL_v1.md`） |
-| 数量 | 24 题：`go 10 / hold 5 / reject 9`；5 台器械、2 个器械族（超声 20、MRI 5、乳腺 4 —— 详见下） |
-| 引文 | 每条都有 FDA 决策文件正文逐字句；**"这句确实在 PDF 里"需要人打开 PDF 搜**，我们不代你确认 |
-| 校验 | 自动只查字段完整与 id 唯一；语义与标签一致性待第二标注人 |
+| 数量 | **36 题：`go 13 / hold 7 / reject 16`**；7 台器械、5 个器械族 |
+| 引文 | 每题都有 FDA 决策文件正文逐字句；**"这句确实在 PDF 里"必须由人打开 PDF 搜一遍**，我们不代你确认 |
 
-## 来源（公开决策文件，可直点）
+## 分布（族 / 器械 / 题）
 
-| K 号 | 器械 | 族 |
+| 族 | 器械（K 号） | 题 |
 |---|---|---|
-| K251456 | BrightHeart View Classifier v1.1（胎儿心脏切面分类） | 超声 |
-| K243684 | BrightHeart View Classifier（上者前代，含"妊娠年龄段"类修改） | 超声 |
-| K233955 | Clarius OB AI（便携超声胎儿生物测量） | 超声 |
-| K240290 | AiMIFY（MRI 增强，Subtle Medical） | MRI |
-| K241561 | MammoScreen BD（乳腺密度，Therapixel） | 乳腺摄影 |
+| 超声 | K251456 BrightHeart v1.1、K243684 BrightHeart、K233955 Clarius OB AI | 15 |
+| MRI | K240290 AiMIFY | 5 |
+| 乳腺摄影 | K241561 MammoScreen BD | 4 |
+| 牙科 X 光 | K250753 VELMENI for DENTISTS (V4D) | 5 |
+| 胸部 CT | K241891 ScreenDx（ILD 转诊） | 7 |
 
-- https://www.accessdata.fda.gov/cdrh_docs/pdf25/K251456.pdf
-- https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243684.pdf
-- https://www.accessdata.fda.gov/cdrh_docs/pdf23/K233955.pdf
-- https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf
-- https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf
+来源 PDF 全部可直点，前缀均为 `https://www.accessdata.fda.gov/cdrh_docs/`：
+`pdf25/K251456`、`pdf24/K243684`、`pdf23/K233955`、`pdf24/K240290`、`pdf24/K241561`、`pdf25/K250753`、`pdf24/K241891`。
 
-## 为什么扩到 reject 9 道
+## 为什么 reject 要占近一半
 
-0.1.3 的公开列 32 题里 `go 28 / hold 4 / reject 0`，**"一律答 go"就能拿 0.875**。这是台子最硬的结构缺陷，比任何措辞问题都大。v1 把 `reject` 拉到 9 道（`reject` 全部来自"适应证/探头/模态/厂商/用户人群越界"与"改验收判据"两类硬边界），并补了 4 道 `hold`（"缺必要条件步骤"）。
+0.1.3 的公开列 32 题里 `go 28 / hold 4 / reject 0`，**"一律答 go"就能拿 0.875**——这是台子最硬的结构缺陷。v2 把 `reject` 拉到 16 道，全部落在 FDA 文件里写得明明白白的硬边界：
 
-**并入后的算术投影**：`(28+10) / (42+24) = 0.576`——一律答 go 的准确率从 0.875 降到约 0.58。这是**算式**，不是实测分数；实测要等冻结重跑。
+| 类型 | 例子（都是原文边界） |
+|---|---|
+| 患者人群越界 | 恒牙 / ≥15 岁（K250753）、>22 岁（K241891）、经腹探头（K251456） |
+| 模态/输入越界 | `Clarius OB AI is intended for use in B-Mode only`；`The input to ScreenDx is a DICOM-compliant lung CT scan` |
+| 器械绑定越界 | `not a stand-alone software device`；非 Clarius 第三方超声机 |
+| 功能越界 | `no localization information and there is no … annotations`（ScreenDx）；`Annotated DICOM files … cannot be modified by the user`（BrightHeart） |
+| 适应证越界 | `None of the changes shall result in a change to the Indications for Use`（AiMIFY）；`not intended to rule-out or rule-in lung fibrosis` |
+| 部署越界 | `No changes are made to the deployment environment or inference pipeline`（VELMENI） |
+| 检测病种越界 | 计划只含龋齿/修复体/固定桥/种植体，新增根尖周病变即范围外（K250753） |
 
-## 我们已知的薄弱处（先说，不等你发现）
+**算式投影**：`(28+13)/(42+36) = 0.526`——一律答 go 从 **0.875 降到约 0.53**。这是算式，不是实测；实测要等冻结重跑。
 
-1. **`K241561-R4` 引文最弱**：用的是表格前说明句 + "表内只列三项"，属"表里没有"而非"计划明说不行"。**建议撤掉重做。**
-2. **3 道 `hold` 依赖"必要条件"读法**（K251456-R4、K240290-R3、K233955-R3、K243684-R2 共 4 道）：我们据"该类修改必须做比较+验证"判 hold。第二标注人若认为该判 `reject`，κ 会掉——这是要测的歧义点，不是要藏的。
-3. **K251456 与 K243684 是同一器械两代**，同时入池是刻意用来测跨代一致性；若被当成"重复计数"，需在冻结时拆成两个 subset 报分。
-4. **2 个族撑不起"通用 PCCP 判定台"**：超声占 20/24。要谈"比竞品好"，必须补心血管、病理、内镜、眼科等族。
-5. 每道题只考"读计划文本 + 判"，不含"看代码/看数据"工序；这是题集定位，但别拿它当全面合规审计。
+## 冻结门槛三查（今天）
+
+| 门槛 | 现状 |
+|---|---|
+| ① 第二标注人完成并算出 κ（≥0.40 继续，≥0.60 才写"实质一致"） | **✗ 0 人、0 次** |
+| ② 每句原句两人各自能在 PDF 里搜到 | ✗ 仅我一人搜过 |
+| ③ `reject` ≥12 且族 ≥3 | **✓ 16 道 / 5 族** |
+| （附加）全部题带逐字引文 | ✓ 36/36 |
+
+**所以：不冻结、不发 0.1.4。** 第 ③ 条刚满足，①②卡在人。
+
+## 已知薄弱处（先说，不等你发现）
+
+1. **`K241561-R4` 引文最弱**：用"表内只列三项"代替"计划明说不行"，建议撤掉重做。
+2. **7 道 `hold` 依赖"必要条件"读法**：单标注判 hold，第二标注人可能判 reject，κ 会掉——这是要测的歧义，不是要藏的事。
+3. **K251456 与 K243684 是同一器械两代**，刻意用来测跨代一致性；若被判"重复计数"，冻结时拆两个 subset 报分。
+4. **超声仍占 15/36**：族数够了，权重还不均。
+5. **36 题≠FDA PCCP 清单 240 条的代表抽样**，属非随机便利抽样，报分时不得外推为"整体合规率"。
 
 ## 怎么用
 
-- 觉得某题标签错了：在 [Issue #2](https://github.com/LGD-Eval/pccp-bench/issues/2) 里写 `题号 + 你的标签 + 你引的原句`。**不带原句的分歧不收**，这条对我们也一样。
-- 想当第二标注人：按协议盲标，**先别看这个 JSON**（看了就不算独立）。
-- 想跑分：用 0.1.3 归档（`10.5281/zenodo.24551199`），候选池还没进台子。
-
-## 什么时候冻结
-
-三条全满足才冻：①第二标注人完成并算出 κ（≥0.40 才继续，≥0.60 才敢写"实质一致"）；②每句原句两人各自能在 PDF 里搜到；③`reject` ≥12 道且族≥3。
+- 标签有异议：在 [Issue #2](https://github.com/LGD-Eval/pccp-bench/issues/2) 写 `题号 + 你的标签 + 你引的原句`。**不带原句的分歧不收**，这条对我们也一样。
+- 想当第二标注人：按协议盲标，**先别看这个 JSON**。
+- 想跑分：用 0.1.3 归档（`10.5281/zenodo.24551199`）；候选池尚未进台子。
