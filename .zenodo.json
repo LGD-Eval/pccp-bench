@@ -1,9 +1,9 @@
 {
-  "title": "PCCP-Bench: a judgeable, re-runnable test set for PCCP decisions",
-  "description": "42 cases (32 public, 10 held-out as commitments only). Judge each device change as go/hold/reject with the regulatory text cited. v0.1.1 ships the judge closure inside the bundle.",
+  "title": "PCCP-Bench: a judgeable, re-runnable test set for PCCP decisions (v0.1.2, scores traceable to raw output)",
+  "description": "42 cases (32 public, 10 held-out commitments). go/hold/reject with a reason tag and the regulatory text cited. v0.1.2 ships the judge closure plus evidence logs behind every score.",
   "upload_type": "dataset",
   "license": "cc-by-4.0",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "creators": [
     {
       "name": "Zhao, Xinghua"
@@ -16,7 +16,7 @@
     "regulatory science",
     "benchmark"
   ],
-  "doi": "10.5281/zenodo.24550734",
+  "doi": "10.5281/zenodo.24551117",
   "related_identifiers": [
     {
       "identifier": "https://doi.org/10.5281/zenodo.24550266",
@@ -24,9 +24,9 @@
       "scheme": "doi"
     },
     {
-      "identifier": "https://github.com/AITB-Bench/aitb-bench",
-      "relation": "isSupplementedBy",
-      "scheme": "url"
+      "identifier": "https://doi.org/10.5281/zenodo.24550734",
+      "relation": "isPreviousVersionOf",
+      "scheme": "doi"
     },
     {
       "identifier": "https://github.com/LGD-Eval/pccp-bench",
