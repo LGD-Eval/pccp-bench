@@ -6,16 +6,16 @@
   "annotator": "single (LGD), awaiting independent second annotator",
   "rule": "每一道题必须能逐字引到决策文件原句；引不到就不建题",
   "counts": {
-   "total": 36,
+   "total": 37,
    "go": 13,
    "hold": 7,
-   "reject": 16
+   "reject": 17
   },
   "devices": 7,
   "families": {
    "ultrasound": 15,
    "mri": 5,
-   "mammography": 4,
+   "mammography": 5,
    "dental": 5,
    "chest_ct": 7
   },
@@ -28,11 +28,13 @@
    "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf",
    "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf"
   ],
-  "revision": "v2.1（引文自检后修订：2 条补 Testing Methods 列、2 条标 weak）",
+  "revision": "v2.2（回到原文后修订：K241561 三道补表格原文并升 solid；K240290-R1 补 None-of-the-changes 句升 fair；K241561-R4 改引计划表三项枚举；新增 K241561-R5 人口学 reject）",
   "redteam": {
-   "total": 36,
+   "total": 37,
    "cite_fixed": 2,
-   "flagged_weak": 2
+   "weak": 1,
+   "fair": 2,
+   "new": 1
   }
  },
  "cases": [
@@ -98,9 +100,9 @@
    "change": "扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机型",
    "verdict": "go",
    "rule": 5,
-   "cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models.",
-   "confidence": "weak",
-   "confidence_why": "引文只覆盖“计划要加数据”的声明，没引到该类修改的测试要件（同文档 R3 那句 shall be subject to the same performance testing… 属另一处表述），需第二标注人核"
+   "cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models. … None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY.",
+   "confidence": "fair",
+   "confidence_why": "“加数据”那类没有独立测试句，只能引到 “None of the changes shall result in a change to the … performance endpoints, or acceptance criteria” 作为“不越界”的依据；比 R3 的显式句弱，第二标注人可复议"
   },
   {
    "id": "K240290-R2",
@@ -150,7 +152,9 @@
    "change": "新增 GE 乳腺机支持（无需重训），并以 5 位放射科医师视觉评估做一致性测试，二次加权 kappa 须优于 0.85",
    "verdict": "go",
    "rule": 5,
-   "cite": "Modification 1: Support of GE mammograms (no re-training required) … Agreement testing against the visual assessment of 5 radiologists on GE mammograms … Quadratic kappa on GE mammograms superior to 0.85."
+   "cite": "Modification 1: Support of GE mammograms (no re-training required) | Data used for development: No new data collection is foreseen for this change. | Comprehensive testing for planned changes: Agreement testing against the visual assessment of 5 radiologists on GE mammograms. | Acceptance criteria: Quadratic kappa on GE mammograms superior to 0.85.",
+   "confidence": "solid",
+   "confidence_why": ""
   },
   {
    "id": "K241561-R2",
@@ -160,9 +164,9 @@
    "change": "新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据",
    "verdict": "go",
    "rule": 5,
-   "cite": "Modification 2: Support of Siemens mammograms (re-training required) … on Siemens mammograms non-inferior to the comparator device (K241561) on Hologic mammograms.",
-   "confidence": "fair",
-   "confidence_why": "引文含“非劣于对照器械”这一验收判据，但未引到测试方法/监控方式那两列；判 go 依据是“判据存在”，第二标注人可复议"
+   "cite": "Modification 2: Support of Siemens mammograms (re-training required) | Data: Siemens, FFDM; Siemens, 2DSM representing the target population | Testing: Agreement testing against the visual assessment of 5 radiologists on Siemens mammograms. | Acceptance criteria: linear kappa, accuracy, and density bins (A, B, C and D) on Siemens and Hologic mammograms non-inferior to the comparator device (K241561) on Hologic mammograms.",
+   "confidence": "solid",
+   "confidence_why": ""
   },
   {
    "id": "K241561-R3",
@@ -172,7 +176,9 @@
    "change": "把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试",
    "verdict": "hold",
    "rule": 3,
-   "cite": "Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) … Agreement testing against the visual assessment of 5 radiologists …"
+   "cite": "Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) | Testing: Agreement testing against the visual assessment of 5 radiologists on Hologic and new manufacturer(s) mammograms. | Therapixel monitors customer sites. The distribution of breast density assessment obtained is determined on a representative screening distribution, which serves as a Reference Distribution. Device monitoring compares breast density assessment in real conditions to the reference distribution and alerts of any deviations.（跳过该一致性测试即缺必要条件）",
+   "confidence": "solid",
+   "confidence_why": ""
   },
   {
    "id": "K241561-R4",
@@ -182,10 +188,10 @@
    "change": "新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持",
    "verdict": "reject",
    "rule": 1,
-   "cite": "The table below explains, for each Predetermined change, the data used for development/modification and testing, and the monitoring methodology. — 表内仅列 GE、Siemens 与骨干预训练三项。",
+   "cite": "PCCP including: • Support of GE mammograms (no re-training required) • Support of Siemens mammograms (re-training required) • Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning)（计划表把可改范围限定为这三项；新增 Fujifilm 等未列厂商即范围外）",
    "note": "计划未列即范围外；引文为说明句而非被否决的直接原文，本池最弱一条，建议重做或撤掉",
-   "confidence": "weak",
-   "confidence_why": "用“表内只列三项”代替“计划明说不行”，本池最弱一条，建议撤掉重做"
+   "confidence": "fair",
+   "confidence_why": "引文为计划表的三项枚举，“表里没有”不等于“明文禁止”；比原说明句硬，但仍需第二标注人确认这种读法"
   },
   {
    "id": "K243684-R1",
@@ -406,6 +412,16 @@
    "verdict": "reject",
    "rule": 1,
    "cite": "The input to ScreenDx is a DICOM-compliant lung CT scan."
+  },
+  {
+   "id": "K241561-R5",
+   "device": "MammoScreen BD",
+   "k_number": "K241561",
+   "family": "mammography",
+   "change": "把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查",
+   "verdict": "reject",
+   "rule": 1,
+   "cite": "The device is intended to be used in the population of asymptomatic women undergoing screening mammography who are at least 40 years old."
   }
  ]
 }
