@@ -151,6 +151,26 @@ jobs:
           print("OK reference exact/masked:", exact, masked)
           PY
 
+      - name: Validate candidate-pool disagreement record
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open("candidate_pool/disagreement_37.json", encoding="utf-8"))
+          m = d["measured"]
+          n, a = m["n"], m["agreement"]
+          assert n == 37, f"expected 37 cases, got {n}"
+          assert abs(m["agreement_rate"] - round(a / n, 4)) < 1e-9, "agreement_rate inconsistent with counts"
+          assert abs(m["agreement_rate"] - 0.4865) < 1e-9, "rate drifted from the published 0.486"
+          dis = d["disagreements"]
+          assert len(dis) == n - a, f"disagreement rows {len(dis)} != {n - a}"
+          for x in dis:
+              for k in ("case_id", "our_label", "judge", "judge_rules", "cite", "pdf"):
+                  assert x.get(k), f"{x.get('case_id')}: missing {k}"
+              assert x["pdf"].startswith("https://www.accessdata.fda.gov/"), f"{x['case_id']}: pdf not an FDA link"
+              assert len(x["cite"]) > 40, f"{x['case_id']}: cite too short to be a verbatim quote"
+          print(f"OK: {n} cases, {a} agree, {len(dis)} disagreements, every row carries a quote and an FDA link")
+          PY
+
       - name: Render external-run ledger to job summary
         run: |
           python external_run_kit/render_standings.py >> "$GITHUB_STEP_SUMMARY"
