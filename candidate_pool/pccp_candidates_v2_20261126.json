@@ -27,7 +27,13 @@
    "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf",
    "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf",
    "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf"
-  ]
+  ],
+  "revision": "v2.1（引文自检后修订：2 条补 Testing Methods 列、2 条标 weak）",
+  "redteam": {
+   "total": 36,
+   "cite_fixed": 2,
+   "flagged_weak": 2
+  }
  },
  "cases": [
   {
@@ -48,7 +54,8 @@
    "change": "新增对 Canon、Fujifilm、SIUI 三家超声机的支持（此前只验证过 GE / Philips / Samsung / Siemens）",
    "verdict": "go",
    "rule": 5,
-   "cite": "Modification of data input sources: ultrasound machine make (Canon, Fujifilm, SIUI) — Improvement in the view classification performance with ultrasound machine makes not previously validated."
+   "cite": "Modification of data input sources: ultrasound machine make (Canon, Fujifilm, SIUI) — Improvement in the view classification performance with ultrasound machine makes not previously validated. （同表 Testing Methods 列，原文：Re-training of the BrightHeart View Classifier with data from new ultrasound machine makes to optimize its performance followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.）",
+   "cite_fix": "原引文只覆盖 Modification 描述，缺 Testing Methods 列；已补该列表述（文字以 PDF 为准）"
   },
   {
    "id": "K251456-R3",
@@ -58,7 +65,8 @@
    "change": "新增两个标准切面：心室水平短轴、房室瓣水平短轴",
    "verdict": "go",
    "rule": 5,
-   "cite": "Addition of standard views (short-axis view at the level of the ventricles and short-axis view at the level of the atrioventricular valves)."
+   "cite": "Addition of standard views (short-axis view at the level of the ventricles and short-axis view at the level of the atrioventricular valves). （同表 Testing Methods 列，原文：Re-training of the BrightHeart View Classifier with data from new standard views to optimize its performance followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.）",
+   "cite_fix": "原引文只覆盖 Modification 描述，缺 Testing Methods 列；已补该列表述（文字以 PDF 为准）"
   },
   {
    "id": "K251456-R4",
@@ -90,7 +98,9 @@
    "change": "扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机型",
    "verdict": "go",
    "rule": 5,
-   "cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models."
+   "cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models.",
+   "confidence": "weak",
+   "confidence_why": "引文只覆盖“计划要加数据”的声明，没引到该类修改的测试要件（同文档 R3 那句 shall be subject to the same performance testing… 属另一处表述），需第二标注人核"
   },
   {
    "id": "K240290-R2",
@@ -150,7 +160,9 @@
    "change": "新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据",
    "verdict": "go",
    "rule": 5,
-   "cite": "Modification 2: Support of Siemens mammograms (re-training required) … on Siemens mammograms non-inferior to the comparator device (K241561) on Hologic mammograms."
+   "cite": "Modification 2: Support of Siemens mammograms (re-training required) … on Siemens mammograms non-inferior to the comparator device (K241561) on Hologic mammograms.",
+   "confidence": "fair",
+   "confidence_why": "引文含“非劣于对照器械”这一验收判据，但未引到测试方法/监控方式那两列；判 go 依据是“判据存在”，第二标注人可复议"
   },
   {
    "id": "K241561-R3",
@@ -171,7 +183,9 @@
    "verdict": "reject",
    "rule": 1,
    "cite": "The table below explains, for each Predetermined change, the data used for development/modification and testing, and the monitoring methodology. — 表内仅列 GE、Siemens 与骨干预训练三项。",
-   "note": "计划未列即范围外；引文为说明句而非被否决的直接原文，本池最弱一条，建议重做或撤掉"
+   "note": "计划未列即范围外；引文为说明句而非被否决的直接原文，本池最弱一条，建议重做或撤掉",
+   "confidence": "weak",
+   "confidence_why": "用“表内只列三项”代替“计划明说不行”，本池最弱一条，建议撤掉重做"
   },
   {
    "id": "K243684-R1",
