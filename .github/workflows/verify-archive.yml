@@ -95,15 +95,18 @@ jobs:
           python - <<'PY'
           import re, sys
           log = open("/tmp/score.log", encoding="utf-8", errors="replace").read()
-          print(log[-1200:])
-          nums = [float(x) for x in re.findall(r"public\s*[=:]\s*([0-9.]+)", log)]
-          if not nums:
-              sys.exit("cannot find public= in output")
-          worst = min(nums)
+          line = next((l for l in log.splitlines() if "exact public=" in l), "")
+          print(line)
+          m = re.search(r"exact public=([0-9.]+)\s+masked=([0-9.]+)", line)
+          if not m:
+              sys.exit("cannot parse 'exact public=… masked=…' line")
+          exact, masked = float(m.group(1)), float(m.group(2))
           expect = 0.9688
-          if abs(worst - expect) > 5e-5:
-              sys.exit(f"reference public score drifted: got {worst}, expect {expect}")
-          print("OK reference public:", worst)
+          if abs(exact - expect) > 5e-5 or abs(masked - expect) > 5e-5:
+              sys.exit(f"reference drifted: exact={exact} masked={masked}, expect {expect}/{expect}")
+          # macro_recall 必须与 exact 分开读——exact 单独不是成绩
+          assert "macro_recall" in log, "macro_recall line missing"
+          print("OK reference exact/masked:", exact, masked)
           PY
 
       - name: Upload score log
