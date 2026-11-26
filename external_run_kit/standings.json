@@ -1,0 +1,26 @@
+{
+  "ledger": "PCCP-Bench 外部实跑台账",
+  "rules": [
+    "只增不删：任何一次提交都保留，包括作废的（写 why_void）",
+    "不改题：因外部成绩不调整既有题；改动只能由新版本承载",
+    "匿名可：匿名只公开 adapter_sha256[:8]",
+    "反照必跑：每次外部跑分同时跑 参考/背题者/空基线 三对照，任一异常当次作废"
+  ],
+  "baseline_reference": {"public": 0.9688, "masked": 0.9688, "tag": 1.0},
+  "baseline_memoriser": {"public": 1.0, "masked": 0.125, "tag_public": 1.0, "tag_masked": 0.0312},
+  "baseline_always_go": {"exact_public": 0.875, "macro_recall_public": 0.5},
+  "schema": {
+    "date": "YYYY-MM-DD",
+    "team": "队名或 anon:<sha8>",
+    "adapter_sha256": "sha256(adapter.py)",
+    "archive": {"version": "0.1.3", "doi": "10.5281/zenodo.24551199"},
+    "public": {"exact": null, "masked": null, "tag": null, "macro_recall": null},
+    "hidden": {"exact": null, "tag": null},
+    "controls_pass": null,
+    "rerun_consistent": null,
+    "status": "valid | void",
+    "why_void": null,
+    "notes": null
+  },
+  "entries": []
+}
