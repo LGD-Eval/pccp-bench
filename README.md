@@ -75,7 +75,7 @@ python bench.py --submit your_adapter.py --team you
 
 ## 许可
 
-全部内容（代码 + 数据 + evidence 日志 + annotation 标注）统一 **MIT**，见根目录 `LICENSE`；逐目录对照表见 `LICENSE_STATUS.md`。
+数据 CC BY 4.0（含 `evidence/` 日志与标注）；代码（`bench.py`、`adapter_reference.py`、`judges/`、`make_evidence.py`、`tools/`）Apache-2.0。逐目录见 `LICENSE_STATUS.md`。
 
 ## 试真台接入
 
