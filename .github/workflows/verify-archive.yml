@@ -153,6 +153,9 @@ jobs:
           print("OK reference exact/masked:", exact, masked)
           PY
 
+      - name: Release gate selftest (offline, stdlib only)
+        run: python tools/pccp_gate.py --selftest
+
       - name: Validate candidate-pool disagreement record
         run: |
           python - <<'PY'
