@@ -8,8 +8,8 @@
   "counts": {
    "total": 37,
    "go": 13,
-   "hold": 7,
-   "reject": 17
+   "hold": 24,
+   "reject": 0
   },
   "devices": 7,
   "families": {
@@ -28,13 +28,23 @@
    "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf",
    "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf"
   ],
-  "revision": "v2.2（回到原文后修订：K241561 三道补表格原文并升 solid；K240290-R1 补 None-of-the-changes 句升 fair；K241561-R4 改引计划表三项枚举；新增 K241561-R5 人口学 reject）",
+  "revision": "v2.3（标签修订：越界类 reject→hold/resubmit，依据我们自己的《决定单》；reject 类清零并对外更正；新增第四类 resubmit）",
   "redteam": {
    "total": 37,
    "cite_fixed": 2,
    "weak": 1,
    "fair": 2,
    "new": 1
+  },
+  "hold_subclass": {
+   "insufficient": 7,
+   "resubmit": 17
+  },
+  "taxonomy": {
+   "go": "计划内且必要条件齐备",
+   "hold/insufficient": "计划内，但缺必要步骤或判据未评估",
+   "hold/resubmit": "计划未覆盖，必须另交新申报（不是禁止）",
+   "reject": "禁止性行为（如 §515C(c) 拿修改版当 predicate、无 PCCP 却宣称覆盖）——本池 0 条"
   }
  },
  "cases": [
@@ -79,7 +89,8 @@
    "verdict": "hold",
    "rule": 3,
    "cite": "… followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.",
-   "note": "PCCP 把“比较 + 验证”写成该类的必要条件；缺步骤即不满足，但不是范围外"
+   "note": "PCCP 把“比较 + 验证”写成该类的必要条件；缺步骤即不满足，但不是范围外",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K251456-R5",
@@ -87,10 +98,13 @@
    "k_number": "K251456",
    "family": "ultrasound",
    "change": "把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
    "cite": "BrightHeart View Classifier was validated with pregnancies at 18 weeks of gestation or later recorded with transabdominal probes and is intended to be used only for such examinations.",
-   "note": "PCCP 四条修改均未涉及探头类型；范围外即新申报"
+   "note": "PCCP 四条修改均未涉及探头类型；范围外即新申报",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K240290-R1",
@@ -122,7 +136,8 @@
    "change": "为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试",
    "verdict": "hold",
    "rule": 3,
-   "cite": "The AiMIFY AI/ML model is planned to be retrained with additional output channels to reduce processing time, and shall be subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device."
+   "cite": "The AiMIFY AI/ML model is planned to be retrained with additional output channels to reduce processing time, and shall be subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device.",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K240290-R4",
@@ -130,9 +145,12 @@
    "k_number": "K240290",
    "family": "mri",
    "change": "把适应证从脑部 MRI 扩到脊柱 MRI",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY."
+   "cite": "None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K240290-R5",
@@ -140,9 +158,12 @@
    "k_number": "K240290",
    "family": "mri",
    "change": "放宽验收判据（把 CNR 提升阈值下调，以便更容易通过）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 2,
-   "cite": "None of the changes shall result in a change to the … performance endpoints, or acceptance criteria of AiMIFY."
+   "cite": "None of the changes shall result in a change to the … performance endpoints, or acceptance criteria of AiMIFY.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241561-R1",
@@ -178,7 +199,8 @@
    "rule": 3,
    "cite": "Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) | Testing: Agreement testing against the visual assessment of 5 radiologists on Hologic and new manufacturer(s) mammograms. | Therapixel monitors customer sites. The distribution of breast density assessment obtained is determined on a representative screening distribution, which serves as a Reference Distribution. Device monitoring compares breast density assessment in real conditions to the reference distribution and alerts of any deviations.（跳过该一致性测试即缺必要条件）",
    "confidence": "solid",
-   "confidence_why": ""
+   "confidence_why": "",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K241561-R4",
@@ -186,12 +208,15 @@
    "k_number": "K241561",
    "family": "mammography",
    "change": "新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
    "cite": "PCCP including: • Support of GE mammograms (no re-training required) • Support of Siemens mammograms (re-training required) • Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning)（计划表把可改范围限定为这三项；新增 Fujifilm 等未列厂商即范围外）",
    "note": "计划未列即范围外；引文为说明句而非被否决的直接原文，本池最弱一条，建议重做或撤掉",
    "confidence": "fair",
-   "confidence_why": "引文为计划表的三项枚举，“表里没有”不等于“明文禁止”；比原说明句硬，但仍需第二标注人确认这种读法"
+   "confidence_why": "引文为计划表的三项枚举，“表里没有”不等于“明文禁止”；比原说明句硬，但仍需第二标注人确认这种读法",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K243684-R1",
@@ -211,7 +236,8 @@
    "change": "扩妊娠年龄段只加数据、不重训也不与原模型比较就发布",
    "verdict": "hold",
    "rule": 3,
-   "cite": "Re-training of the BrightHeart View Classifier with data from new gestational ages to optimize its performance followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation."
+   "cite": "Re-training of the BrightHeart View Classifier with data from new gestational ages to optimize its performance followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K243684-R3",
@@ -219,9 +245,12 @@
    "k_number": "K243684",
    "family": "ultrasound",
    "change": "允许用户在设备内修改 AI 生成的标注 DICOM",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "Annotated DICOM files generated by the device cannot be modified by the user."
+   "cite": "Annotated DICOM files generated by the device cannot be modified by the user.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K243684-R4",
@@ -229,9 +258,12 @@
    "k_number": "K243684",
    "family": "ultrasound",
    "change": "把用户人群扩到非专业人员/非产前超声环境（如助产士自助使用）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "BrightHeart View Classifier is intended to be used by qualified, trained healthcare professional personnel in a professional prenatal ultrasound (US) imaging environment (this includes sonographers, MFMs, OB/GYN, and Fetal surgeons)."
+   "cite": "BrightHeart View Classifier is intended to be used by qualified, trained healthcare professional personnel in a professional prenatal ultrasound (US) imaging environment (this includes sonographers, MFMs, OB/GYN, and Fetal surgeons).",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K233955-R1",
@@ -261,7 +293,8 @@
    "change": "只改后处理算法把图像看着更顺眼，不做与原模型的性能比较、也不做临床验证",
    "verdict": "hold",
    "rule": 3,
-   "cite": "Modification of post-processing algorithms | Improvement and optimization of Clarius OB AI’s performance and robustness — 该类的 Testing Methods 同样要求 “Internal testing and a comparison of the original OB AI model to the modified OB AI model (using performance metrics) and clinical performance testing (verification and validation).”"
+   "cite": "Modification of post-processing algorithms | Improvement and optimization of Clarius OB AI’s performance and robustness — 该类的 Testing Methods 同样要求 “Internal testing and a comparison of the original OB AI model to the modified OB AI model (using performance metrics) and clinical performance testing (verification and validation).”",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K233955-R4",
@@ -269,9 +302,12 @@
    "k_number": "K233955",
    "family": "ultrasound",
    "change": "把 OB AI 用到非 Clarius 的第三方超声机（如 GE、Philips 机器）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "Clarius OB AI is incorporated into the Clarius App software, which is compatible with iOS and Android operating systems … and is intended for use with the following Clarius Ultrasound Scanner system transducer (previously 510(k)-cleared in K213436). Clarius OB AI is not a stand-alone software device."
+   "cite": "Clarius OB AI is incorporated into the Clarius App software, which is compatible with iOS and Android operating systems … and is intended for use with the following Clarius Ultrasound Scanner system transducer (previously 510(k)-cleared in K213436). Clarius OB AI is not a stand-alone software device.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K233955-R5",
@@ -279,9 +315,12 @@
    "k_number": "K233955",
    "family": "ultrasound",
    "change": "从 B 模式扩到彩色多普勒/弹性成像模式下的自动测量",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "Clarius OB AI is intended for use in B-Mode only."
+   "cite": "Clarius OB AI is intended for use in B-Mode only.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K233955-R6",
@@ -289,9 +328,12 @@
    "k_number": "K233955",
    "family": "ultrasound",
    "change": "从凸阵探头扩到线阵/相控阵探头采集的数据",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "Clarius OB AI is intended to assist in measurements of fetal biometric parameters … on ultrasound data acquired by the Clarius Ultrasound Scanner (i.e., curvilinear scanner)."
+   "cite": "Clarius OB AI is intended to assist in measurements of fetal biometric parameters … on ultrasound data acquired by the Clarius Ultrasound Scanner (i.e., curvilinear scanner).",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K250753-R1",
@@ -311,7 +353,8 @@
    "change": "重训后指标只对上一版报了数，没和原清关模型比，也没走预定义判据闸门就上线",
    "verdict": "hold",
    "rule": 3,
-   "cite": "If the modification passes the predefined evaluation criteria, controlled reports & documentation will be generated … For instances where the modification does not pass the predefined criteria, the modification will not be implemented."
+   "cite": "If the modification passes the predefined evaluation criteria, controlled reports & documentation will be generated … For instances where the modification does not pass the predefined criteria, the modification will not be implemented.",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K250753-R3",
@@ -319,9 +362,12 @@
    "k_number": "K250753",
    "family": "dental",
    "change": "把适用范围从恒牙/≥15 岁扩到乳牙与 15 岁以下患儿",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "… in digital bitewing, periapical, and panoramic radiographs of permanent teeth in patients 15 years of age or older."
+   "cite": "… in digital bitewing, periapical, and panoramic radiographs of permanent teeth in patients 15 years of age or older.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K250753-R4",
@@ -329,9 +375,12 @@
    "k_number": "K250753",
    "family": "dental",
    "change": "新增计划外的检测病种（如根尖周病变、牙周骨丧失）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "… the Condition Detection Modules for each radiograph type (bitewing, periapical, and panoramic) that contains the models trained for detecting predetermined conditions (caries and fillings/restorations, fixed prostheses, and implants)."
+   "cite": "… the Condition Detection Modules for each radiograph type (bitewing, periapical, and panoramic) that contains the models trained for detecting predetermined conditions (caries and fillings/restorations, fixed prostheses, and implants).",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K250753-R5",
@@ -339,9 +388,12 @@
    "k_number": "K250753",
    "family": "dental",
    "change": "把推理管线搬到本地边缘部署（脱离现有部署环境）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "No changes are made to the deployment environment or inference pipeline, only the trained parameters (model weights) are updated."
+   "cite": "No changes are made to the deployment environment or inference pipeline, only the trained parameters (model weights) are updated.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241891-R1",
@@ -371,7 +423,8 @@
    "change": "调阈值把阳性率降下来减少报警，但不做统计评估、不出非劣证据",
    "verdict": "hold",
    "rule": 3,
-   "cite": "Changes are evaluated via pre-specified statistical analyses in-line with those as part of the original device testing, to ensure, at minimum, non-inferior absolute performance, and potential improvements in performance, training data, or generalizability."
+   "cite": "Changes are evaluated via pre-specified statistical analyses in-line with those as part of the original device testing, to ensure, at minimum, non-inferior absolute performance, and potential improvements in performance, training data, or generalizability.",
+   "hold_subclass": "insufficient"
   },
   {
    "id": "K241891-R4",
@@ -379,9 +432,12 @@
    "k_number": "K241891",
    "family": "chest_ct",
    "change": "输出病灶定位框或热图，把阳性区域标到原图上",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "No analyzed images or other visually assessed features are output by the device. No regions of interest are either input or provided as an output. Additionally, the software does not provide localization information and there is no filtering, post processing, or annotations."
+   "cite": "No analyzed images or other visually assessed features are output by the device. No regions of interest are either input or provided as an output. Additionally, the software does not provide localization information and there is no filtering, post processing, or annotations.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241891-R5",
@@ -389,9 +445,12 @@
    "k_number": "K241891",
    "family": "chest_ct",
    "change": "把适用人群扩到 ≤22 岁",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "Clinical case eligibility includes the following criteria: Age > 22 years old."
+   "cite": "Clinical case eligibility includes the following criteria: Age > 22 years old.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241891-R6",
@@ -399,9 +458,12 @@
    "k_number": "K241891",
    "family": "chest_ct",
    "change": "把定位改成“可排除/可确诊肺纤维化”（rule-in / rule-out）",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "… ScreenDx does not replace the current standard of care methods for diagnosis of lung fibrosis and the results of the device are not intended to rule-out or rule-in lung fibrosis."
+   "cite": "… ScreenDx does not replace the current standard of care methods for diagnosis of lung fibrosis and the results of the device are not intended to rule-out or rule-in lung fibrosis.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241891-R7",
@@ -409,9 +471,12 @@
    "k_number": "K241891",
    "family": "chest_ct",
    "change": "把输入模态从 CT 扩到胸部 X 光片",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "The input to ScreenDx is a DICOM-compliant lung CT scan."
+   "cite": "The input to ScreenDx is a DICOM-compliant lung CT scan.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   },
   {
    "id": "K241561-R5",
@@ -419,9 +484,12 @@
    "k_number": "K241561",
    "family": "mammography",
    "change": "把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查",
-   "verdict": "reject",
+   "verdict": "hold",
    "rule": 1,
-   "cite": "The device is intended to be used in the population of asymptomatic women undergoing screening mammography who are at least 40 years old."
+   "cite": "The device is intended to be used in the population of asymptomatic women undergoing screening mammography who are at least 40 years old.",
+   "label_before_revision": "reject",
+   "hold_subclass": "resubmit",
+   "label_revision": "2026-11-26 修订：按 DECISION_reject_vs_hold.md（§515C(b) 不覆盖不等于禁止），越界判 hold/resubmit 而非 reject"
   }
  ]
 }
