@@ -16,7 +16,7 @@ curl -L -o p.zip https://zenodo.org/records/24551199/files/pccp-bench_zenodo_v0.
 sha256sum p.zip    # 应为 5151fe7ffa48be46ad55201bf334b536320535805363fa81c3f93a809d942b83
 unzip p.zip && cd p/dataset
 
-python bench.py --submit adapter_reference.py     # 参考裁判：public 0.9688 / masked 0.9688 / tag 1.0
+python bench.py --submit adapter_reference.py     # 参考裁判（0.1.3 自身 32 题）：public 0.9688 / masked 0.9688 / tag 1.0
 python bench.py --submit ../../adapter_template.py --team 你的队名
 ```
 
