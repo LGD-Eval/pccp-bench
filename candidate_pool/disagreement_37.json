@@ -1,0 +1,292 @@
+{
+ "name": "PCCP candidate pool 37: label vs reference-judge disagreement record",
+ "date": "2026-11-26",
+ "status": "CANDIDATE — not frozen, not published, not part of archive 0.1.3",
+ "measured": {
+  "n": 37,
+  "agreement": 18,
+  "agreement_rate": 0.4865,
+  "empty_baseline_always_go": 0.3514,
+  "label_distribution": {
+   "go": 13,
+   "hold/insufficient": 7,
+   "hold/resubmit": 17
+  }
+ },
+ "how_to_reproduce": [
+  "clone LGD-Eval/pccp-bench, unzip 0.1.3 archive from Zenodo (or mirror/ in repo)",
+  "cd into the unpacked dataset dir containing bench.py",
+  "python bench.py --submit adapter_reference.py  # reproduces 0.9688 on the 32 public cases",
+  "our candidate measurement used judges/judge_pccp.py JudgePccpScope.evaluate(case) on the 37 candidate cases;",
+  "each case carries a verbatim FDA quote and a direct PDF link so the disagreement is checkable by hand"
+ ],
+ "disagreements": [
+  {
+   "case_id": "K251456-R4",
+   "device": "BrightHeart View Classifier v1.1",
+   "k_number": "K251456",
+   "family": "ultrasound",
+   "change": "重训后直接发布新版本：没有与原模型做性能指标比较，也没有验证与确认记录",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf51/K251456.pdf",
+   "cite": "… followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation."
+  },
+  {
+   "case_id": "K251456-R5",
+   "device": "BrightHeart View Classifier v1.1",
+   "k_number": "K251456",
+   "family": "ultrasound",
+   "change": "把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头）",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf51/K251456.pdf",
+   "cite": "BrightHeart View Classifier was validated with pregnancies at 18 weeks of gestation or later recorded with transabdominal probes and is intended to be used only for such examinations."
+  },
+  {
+   "case_id": "K240290-R3",
+   "device": "AiMIFY",
+   "k_number": "K240290",
+   "family": "mri",
+   "change": "为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf40/K240290.pdf",
+   "cite": "The AiMIFY AI/ML model is planned to be retrained with additional output channels to reduce processing time, and shall be subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device."
+  },
+  {
+   "case_id": "K240290-R4",
+   "device": "AiMIFY",
+   "k_number": "K240290",
+   "family": "mri",
+   "change": "把适应证从脑部 MRI 扩到脊柱 MRI",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf40/K240290.pdf",
+   "cite": "None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY."
+  },
+  {
+   "case_id": "K241561-R3",
+   "device": "MammoScreen BD",
+   "k_number": "K241561",
+   "family": "mammography",
+   "change": "把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf",
+   "cite": "Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) | Testing: Agreement testing against the visual assessment of 5 radiologists on Hologic and new manufacturer(s) mammograms. | Therapixel monitors customer sites. The distribution of breast density assessment obtained is determined on a representative screening distribution, which serves as a Reference Distribution. Device monitoring compares breast density assessment in real conditions to the reference distribution and alerts of any deviations.（跳过该一致性测试即缺必要条件）"
+  },
+  {
+   "case_id": "K241561-R4",
+   "device": "MammoScreen BD",
+   "k_number": "K241561",
+   "family": "mammography",
+   "change": "新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf",
+   "cite": "PCCP including: • Support of GE mammograms (no re-training required) • Support of Siemens mammograms (re-training required) • Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning)（计划表把可改范围限定为这三项；新增 Fujifilm 等未列厂商即范围外）"
+  },
+  {
+   "case_id": "K243684-R2",
+   "device": "BrightHeart View Classifier（K243684）",
+   "k_number": "K243684",
+   "family": "ultrasound",
+   "change": "扩妊娠年龄段只加数据、不重训也不与原模型比较就发布",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf",
+   "cite": "Re-training of the BrightHeart View Classifier with data from new gestational ages to optimize its performance followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation."
+  },
+  {
+   "case_id": "K243684-R3",
+   "device": "BrightHeart View Classifier（K243684）",
+   "k_number": "K243684",
+   "family": "ultrasound",
+   "change": "允许用户在设备内修改 AI 生成的标注 DICOM",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf",
+   "cite": "Annotated DICOM files generated by the device cannot be modified by the user."
+  },
+  {
+   "case_id": "K243684-R4",
+   "device": "BrightHeart View Classifier（K243684）",
+   "k_number": "K243684",
+   "family": "ultrasound",
+   "change": "把用户人群扩到非专业人员/非产前超声环境（如助产士自助使用）",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf43/K243684.pdf",
+   "cite": "BrightHeart View Classifier is intended to be used by qualified, trained healthcare professional personnel in a professional prenatal ultrasound (US) imaging environment (this includes sonographers, MFMs, OB/GYN, and Fetal surgeons)."
+  },
+  {
+   "case_id": "K233955-R3",
+   "device": "Clarius OB AI",
+   "k_number": "K233955",
+   "family": "ultrasound",
+   "change": "只改后处理算法把图像看着更顺眼，不做与原模型的性能比较、也不做临床验证",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf",
+   "cite": "Modification of post-processing algorithms | Improvement and optimization of Clarius OB AI’s performance and robustness — 该类的 Testing Methods 同样要求 “Internal testing and a comparison of the original OB AI model to the modified OB AI model (using performance metrics) and clinical performance testing (verification and validation).”"
+  },
+  {
+   "case_id": "K233955-R5",
+   "device": "Clarius OB AI",
+   "k_number": "K233955",
+   "family": "ultrasound",
+   "change": "从 B 模式扩到彩色多普勒/弹性成像模式下的自动测量",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf",
+   "cite": "Clarius OB AI is intended for use in B-Mode only."
+  },
+  {
+   "case_id": "K233955-R6",
+   "device": "Clarius OB AI",
+   "k_number": "K233955",
+   "family": "ultrasound",
+   "change": "从凸阵探头扩到线阵/相控阵探头采集的数据",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf33/K233955.pdf",
+   "cite": "Clarius OB AI is intended to assist in measurements of fetal biometric parameters … on ultrasound data acquired by the Clarius Ultrasound Scanner (i.e., curvilinear scanner)."
+  },
+  {
+   "case_id": "K250753-R2",
+   "device": "VELMENI for DENTISTS (V4D)",
+   "k_number": "K250753",
+   "family": "dental",
+   "change": "重训后指标只对上一版报了数，没和原清关模型比，也没走预定义判据闸门就上线",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf",
+   "cite": "If the modification passes the predefined evaluation criteria, controlled reports & documentation will be generated … For instances where the modification does not pass the predefined criteria, the modification will not be implemented."
+  },
+  {
+   "case_id": "K250753-R4",
+   "device": "VELMENI for DENTISTS (V4D)",
+   "k_number": "K250753",
+   "family": "dental",
+   "change": "新增计划外的检测病种（如根尖周病变、牙周骨丧失）",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf",
+   "cite": "… the Condition Detection Modules for each radiograph type (bitewing, periapical, and panoramic) that contains the models trained for detecting predetermined conditions (caries and fillings/restorations, fixed prostheses, and implants)."
+  },
+  {
+   "case_id": "K250753-R5",
+   "device": "VELMENI for DENTISTS (V4D)",
+   "k_number": "K250753",
+   "family": "dental",
+   "change": "把推理管线搬到本地边缘部署（脱离现有部署环境）",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf50/K250753.pdf",
+   "cite": "No changes are made to the deployment environment or inference pipeline, only the trained parameters (model weights) are updated."
+  },
+  {
+   "case_id": "K241891-R3",
+   "device": "ScreenDx",
+   "k_number": "K241891",
+   "family": "chest_ct",
+   "change": "调阈值把阳性率降下来减少报警，但不做统计评估、不出非劣证据",
+   "our_label": "hold/insufficient",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-03-acceptance-criteria-not-met"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf",
+   "cite": "Changes are evaluated via pre-specified statistical analyses in-line with those as part of the original device testing, to ensure, at minimum, non-inferior absolute performance, and potential improvements in performance, training data, or generalizability."
+  },
+  {
+   "case_id": "K241891-R5",
+   "device": "ScreenDx",
+   "k_number": "K241891",
+   "family": "chest_ct",
+   "change": "把适用人群扩到 ≤22 岁",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf",
+   "cite": "Clinical case eligibility includes the following criteria: Age > 22 years old."
+  },
+  {
+   "case_id": "K241891-R7",
+   "device": "ScreenDx",
+   "k_number": "K241891",
+   "family": "chest_ct",
+   "change": "把输入模态从 CT 扩到胸部 X 光片",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241891.pdf",
+   "cite": "The input to ScreenDx is a DICOM-compliant lung CT scan."
+  },
+  {
+   "case_id": "K241561-R5",
+   "device": "MammoScreen BD",
+   "k_number": "K241561",
+   "family": "mammography",
+   "change": "把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查",
+   "our_label": "hold/resubmit",
+   "judge": "reject",
+   "judge_rules": [
+    "P-CRIT-02-intended-use-change"
+   ],
+   "pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf41/K241561.pdf",
+   "cite": "The device is intended to be used in the population of asymptomatic women undergoing screening mammography who are at least 40 years old."
+  }
+ ],
+ "agreements_count": 18
+}
