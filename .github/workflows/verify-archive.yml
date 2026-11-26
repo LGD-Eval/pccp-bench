@@ -167,6 +167,8 @@ jobs:
               for k in ("case_id", "our_label", "judge", "judge_rules", "cite", "pdf"):
                   assert x.get(k), f"{x.get('case_id')}: missing {k}"
               assert x["pdf"].startswith("https://www.accessdata.fda.gov/"), f"{x['case_id']}: pdf not an FDA link"
+              k = x["case_id"].split("-")[0]
+              assert x["pdf"].endswith(f"/pdf{k[1:3]}/{k}.pdf"), f"{x['case_id']}: pdf folder/name must be pdf{k[1:3]}/{k}.pdf (this was off by one digit before)"
               assert len(x["cite"]) > 40, f"{x['case_id']}: cite too short to be a verbatim quote"
           print(f"OK: {n} cases, {a} agree, {len(dis)} disagreements, every row carries a quote and an FDA link")
           PY
