@@ -26,15 +26,14 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-
-      - name: kappa selftest (four-class)
-        run: python annotation/kappa.py --selftest
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      - name: kappa selftest (four-class)
+        run: python annotation/kappa.py --selftest
       - name: Download archive (Zenodo primary, in-repo mirror fallback)
         run: |
           set -u
