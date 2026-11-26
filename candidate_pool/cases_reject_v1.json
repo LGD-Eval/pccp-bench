@@ -1,0 +1,378 @@
+{
+ "basis": "21 U.S.C. 360e-4(c)",
+ "cases": [
+  {
+   "case_id": "K251456-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "BrightHeart View Classifier v1.1",
+    "k_number": "K251456",
+    "family": "ultrasound",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Modification of training and/or validation datasets to update model weights and detection thresholds … followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K251456.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "BrightHeart View Classifier v1.1",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K251456",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K243684-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "BrightHeart View Classifier（前代）",
+    "k_number": "K243684",
+    "family": "ultrasound",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Modification of data input sources: gestational age | Enables the device to achieve sufficient view classification performance … for examinations corresponding to gestational ages not previously validated. | Re-training of the BrightHeart View Classifier with data from new gestational ages … followed by performance testing and a comparison of the original … and verification and validation.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243684.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "BrightHeart View Classifier（前代）",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K243684",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K233955-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "Clarius OB AI",
+    "k_number": "K233955",
+    "family": "ultrasound",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Modification of data input sources | To enable use of Clarius Scanner system OB AI on newer models of the 510(k)-cleared Clarius Ultrasound … Re-training of the OB AI model to expand its use with new data sources (i.e., new 510(k)-cleared models of the Clarius Ultrasound Scanner), internal testing, and clinical performance testing (verification and validation).",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf23/K233955.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "Clarius OB AI",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K233955",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K240290-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "AiMIFY",
+    "k_number": "K240290",
+    "family": "mri",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models. … None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "AiMIFY",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K240290",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K241561-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "MammoScreen BD",
+    "k_number": "K241561",
+    "family": "mammography",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Modification 1: Support of GE mammograms (no re-training required) | Data used for development: No new data collection is foreseen for this change. | Comprehensive testing for planned changes: Agreement testing against the visual assessment of 5 radiologists on GE mammograms. | Acceptance criteria: Quadratic kappa on GE mammograms superior to 0.85.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "MammoScreen BD",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K241561",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K250753-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "VELMENI for DENTISTS (V4D)",
+    "k_number": "K250753",
+    "family": "dental",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "This modification includes re-training the model and is an update to the model weights (and optionally hyperparameters) … while maintaining the model architecture. No changes are made to the deployment environment or inference pipeline, only the trained parameters (model weights) are updated. | Testing Methods: Re-training of each Condition Detection Model with new data … followed by performance testing and a comparison of the modified Condition Detection Model to the reference models i.e. most recent model version and the original cleared model version (using model-specific performance metrics) and verification and validation.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250753.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "VELMENI for DENTISTS (V4D)",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K250753",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  },
+  {
+   "case_id": "K241891-P1",
+   "split": "candidate",
+   "kind": "statute_bar",
+   "expected_verdict": "reject",
+   "hold_subclass": null,
+   "expected_tag": "outside_scope",
+   "label_provenance": "single_annotator_LGD",
+   "label_revision": "2026-11-26 新增：依 §515C(c) 建禁止性题（此前 reject 为空）",
+   "facts_provenance": "statute_verbatim_and_document_quote",
+   "source": {
+    "derived_from": "ScreenDx（ILD 转诊）",
+    "k_number": "K241891",
+    "family": "chest_ct",
+    "change": "拟以该器械**按已授权 PCCP 修改后的版本**作为 predicate device，提交一个新的 510(k)",
+    "cite": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with an established predetermined change control plan as a predicate device. Only the version of the device cleared or approved, prior to changes made under the predetermined change control plan, may be used by a sponsor as a predicate device.",
+    "pdf": "https://www.law.cornell.edu/uscode/text/21/360e-4",
+    "device_side_cite": "Update model architecture or training data | … re-training a new model allows for potential improvements in generalizability … | Testing Methods: Substantial equivalence as compared to the prior version. Statistical assessments following same standards used in original device clearance.",
+    "device_side_pdf": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241891.pdf"
+   },
+   "pccp_authorized": true,
+   "remains_se_to_predicate": false,
+   "pccp_modified_version_used_as_predicate": true,
+   "change_within_pccp_scope": true,
+   "acceptance_criteria_met": true,
+   "affects_intended_use": false,
+   "evidence_sufficiency": "sufficient",
+   "jurisdiction": "FDA",
+   "device_description": "ScreenDx（ILD 转诊）",
+   "source_refs": [
+    {
+     "kind": "statute",
+     "ref": "21 U.S.C. § 360e-4(c) (FD&C §515C(c))",
+     "url": "https://www.law.cornell.edu/uscode/text/21/360e-4"
+    },
+    {
+     "kind": "verbatim_quote",
+     "ref": "In making a determination of substantial equivalence pursuant to section 360c(i) of this title, the Secretary shall not compare a device to changed versions of a device implemented in accordance with "
+    },
+    {
+     "kind": "device_pccp",
+     "ref": "K241891",
+     "note": "该器械已获授权 PCCP（见 device_side_pdf）"
+    }
+   ],
+   "judge_verdict": "reject",
+   "judge_rules": [
+    "P-CRIT-04-se-to-predicate-broken",
+    "P-CRIT-05-modified-version-used-as-predicate",
+    "P-MAJ-10-unknown-change-type"
+   ],
+   "judge_agrees": true
+  }
+ ],
+ "measured_agreement": "7/7",
+ "generated": "2026-11-26"
+}
