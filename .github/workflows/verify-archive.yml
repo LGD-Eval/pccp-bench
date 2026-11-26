@@ -1,0 +1,114 @@
+name: verify-archive
+
+# 目的：让"外人可复跑"这件事不停在 README 的一句话里。
+# 每次改动、每周一次，GitHub 自己的机器从 Zenodo 下载归档、校验 sha256、复算 Merkle 根、
+# 跑参考适配器，任何一项不符就红。绿了就是把"可复跑"钉在别人的基础设施上。
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 3 * * 1"   # 每周一 03:23 UTC
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download frozen archive from Zenodo
+        run: |
+          curl -fL -o p.zip "https://zenodo.org/records/24551199/files/pccp-bench_zenodo_v0.1.3.zip"
+
+      - name: Check archive sha256
+        run: |
+          echo "5151fe7ffa48be46ad55201bf334b536320535805363fa81c3f93a809d942b83  p.zip" | sha256sum -c -
+
+      - name: Unpack
+        run: |
+          mkdir -p work && cd work && unzip -q ../p.zip
+          find . -maxdepth 2 -type d | head -20
+
+      - name: Verify MANIFEST byte-for-byte and recompute Merkle root
+        run: |
+          python - <<'PY'
+          import json, hashlib, sys, pathlib, os
+          base = pathlib.Path("work")
+          # 找到含 MANIFEST.json 的目录（归档内可能有一层前缀）
+          man = next(base.rglob("MANIFEST.json"), None)
+          assert man, "MANIFEST.json not found in archive"
+          root_txt = man.parent / "ROOT.txt"
+          m = json.loads(man.read_text(encoding="utf-8"))
+
+          bad = []
+          leaves = []
+          for f in m["files"]:
+              p = man.parent / f.get("archive_path", f["path"])
+              if not p.exists():
+                  bad.append(("missing", str(p)))
+                  continue
+              d = hashlib.sha256(p.read_bytes()).hexdigest()
+              if d != f["sha256"]:
+                  bad.append(("sha mismatch", f["path"], d))
+              leaves.append((f["path"], d))
+          assert not bad, f"MANIFEST mismatch: {bad[:5]}"
+
+          def merkle(items):
+              items = sorted(items, key=lambda t: t[0])
+              cur = [(t[0], bytes.fromhex(t[1])) for t in items]
+              while len(cur) > 1:
+                  nxt = []
+                  for i in range(0, len(cur), 2):
+                      a = cur[i][1]
+                      b = cur[i + 1][1] if i + 1 < len(cur) else a
+                      nxt.append((cur[i][0] + "|" + (cur[i + 1][0] if i + 1 < len(cur) else cur[i][0]), hashlib.sha256(a + b).digest()))
+                  cur = nxt
+              return cur[0][1].hex()
+
+          import re
+          recomputed = merkle(leaves)
+          txt = root_txt.read_text(encoding="utf-8")
+          hexes = re.findall(r"[0-9a-f]{64}", txt)
+          assert hexes, f"no 64-hex root in ROOT.txt: {txt[:80]!r}"
+          claimed = hexes[0]
+          print("leaves:", len(leaves))
+          print("recomputed root:", recomputed)
+          print("claimed root:   ", claimed)
+          assert recomputed == claimed, "Merkle root mismatch — archive does not match its own ROOT.txt"
+          PY
+
+      - name: Run reference adapter (public split)
+        run: |
+          cd work
+          ds=$(dirname "$(find . -name bench.py | head -1)")
+          cd "$ds"
+          python bench.py --submit adapter_reference.py | tee /tmp/score.log
+          grep -q "public" /tmp/score.log || (echo "no public score line" && exit 1)
+
+      - name: Assert reference score
+        run: |
+          python - <<'PY'
+          import re, sys
+          log = open("/tmp/score.log", encoding="utf-8", errors="replace").read()
+          print(log[-1200:])
+          nums = [float(x) for x in re.findall(r"public\s*[=:]\s*([0-9.]+)", log)]
+          if not nums:
+              sys.exit("cannot find public= in output")
+          worst = min(nums)
+          expect = 0.9688
+          if abs(worst - expect) > 5e-5:
+              sys.exit(f"reference public score drifted: got {worst}, expect {expect}")
+          print("OK reference public:", worst)
+          PY
+
+      - name: Upload score log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: score-log
+          path: /tmp/score.log
