@@ -26,6 +26,9 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+
+      - name: kappa selftest (four-class)
+        run: python annotation/kappa.py --selftest
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
