@@ -1,0 +1,140 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCCP-Bench 0.1.3 · 一页纸</title>
+<style>
+:root{--ink:#12161c;--mut:#5d6874;--line:#e3e6ea;--bg:#fbfcfd;--acc:#1f4e79}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.65 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:960px;margin:0 auto;padding:36px 24px 56px}
+h1{font-size:26px;line-height:1.3;margin:0 0 6px;letter-spacing:.3px}
+.sub{color:var(--mut);font-size:13.5px;margin-bottom:22px}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+h2{font-size:17px;margin:0 0 10px;letter-spacing:.4px}
+h2 .n{color:var(--acc);font-weight:700;margin-right:8px}
+p{margin:0 0 12px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 6px}
+.chip{flex:1;min-width:120px;border:1px solid var(--line);border-left:4px solid var(--c,#c8cdd4);background:#fff;border-radius:8px;padding:12px 14px}
+.chip b{display:block;font-size:24px;line-height:1.1;color:var(--c,#12161c)}
+.chip span{font-size:12px;color:var(--mut);letter-spacing:.5px}
+.chip.ghost{border-left-color:#c8cdd4} .chip.ghost b{color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f4f6f8;font-weight:600;font-size:12px;color:var(--mut);letter-spacing:.4px}
+.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:var(--mut);white-space:nowrap}
+.tag{color:#fff;font-size:11.5px;padding:1px 8px;border-radius:99px;letter-spacing:.5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{margin:0 0 8px;font-size:14px}
+.kv{font:12.5px/1.7 ui-monospace,Consolas,monospace;word-break:break-all;color:#33404d}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+a.btn{display:inline-block;text-decoration:none;padding:9px 14px;border-radius:7px;font-size:13.5px;border:1px solid var(--acc);color:var(--acc);background:#fff}
+a.btn.solid{background:var(--acc);color:#fff}
+.warn{background:#fff8f1;border:1px solid #f0d9bd;border-radius:8px;padding:14px 16px}
+.warn b{color:#8a5210}
+.ok{background:#f2f9f4;border:1px solid #cfe6d9;border-radius:8px;padding:14px 16px}
+.ok b{color:#1a7f4b}
+ul{margin:6px 0 0 18px;padding:0} li{margin:4px 0}
+.foot{margin-top:30px;color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+
+<h1>PCCP-Bench 0.1.3</h1>
+<div class="sub">一个考"FDA 已批准的 Predetermined Change Control Plan（PCCP）到底允不允许这项改动"的判定台 · 冻结归档 + 第三方可重算</div>
+
+<div class="btns">
+  <a class="btn solid" href="https://zenodo.org/records/24551199">归档（DOI 10.5281/zenodo.24551199）</a>
+  <a class="btn" href="https://github.com/LGD-Eval/pccp-bench">仓库</a>
+  <a class="btn" href="https://github.com/LGD-Eval/pccp-bench/issues/1">外部队：自助跑分</a>
+  <a class="btn" href="https://github.com/LGD-Eval/pccp-bench/issues/2">第二标注人：招募中</a>
+</div>
+
+<hr>
+<h2><span class="n">01</span>现在能验什么（数字都能自己重算）</h2>
+<div class="grid">
+  <div class="card"><h3>冻结事实</h3><div class="kv">
+  root = 0f1e697b60ea39face648f86a3268006a410b3ec6e93c5adc8e3165e61a1c60f<br>
+  leaves = 27 · archive zip = 82,283 B<br>
+  zip sha256 = 5151fe7ffa48be46ad55201bf334b536320535805363fa81c3f93a809d942b83<br>
+  items = 42（公开 32 / 隐藏 10）
+  </div></div>
+  <div class="card"><h3>分数（参考实现 / 对照）</h3><div class="kv">
+  参考 public 0.9688 · masked 0.9688 · hidden 0.9 · tag 1.0<br>
+  macro-recall(verdict) public 0.875<br>
+  背题者 public 1.0 → masked 0.125（测"背题"确实塌）<br>
+  空基线（一律答 go）exact 0.875<br>
+  改用候选池 37 题后，空基线算式降到 ≈0.519
+  </div></div>
+</div>
+<p style="margin-top:12px">重算方式：从归档下载 → 校验 sha256 → 按 MANIFEST 重算 Merkle 根 → 跑参考适配器 → 断言 <b>0.9688</b>。同一套步骤已写进 CI，每次提交在 GitHub 自己的机器上跑一遍并公开结果。</p>
+
+<hr>
+<h2><span class="n">02</span>候选池 37 题（未冻结 · 可挑错）</h2>
+<div class="chips">
+      <div class="chip" style="--c:#1a7f4b"><b>13</b><span>go</span></div>
+      <div class="chip" style="--c:#b8791a"><b>7</b><span>hold</span></div>
+      <div class="chip" style="--c:#a3282a"><b>17</b><span>reject</span></div>
+      <div class="chip ghost"><b>37</b><span>候选题总数</span></div>
+    </div>
+<p style="font-size:13px;color:var(--mut);margin-top:10px">来源：7 台器械的 FDA 决策文件（K251456、K243684、K233955、K240290、K241561、K250753、K241891），覆盖超声 / MRI / 乳腺摄影 / 牙科 / 胸部 CT 五个族。每题附"要求你自己去 PDF 里搜一遍"的原句。</p>
+<table><thead><tr><th style="width:132px">题号</th><th>器械</th><th>被改的东西</th><th style="width:84px">标签</th></tr></thead>
+<tbody><tr><td class="mono">K251456-R1</td><td>BrightHeart View Classifier v1.1 (feta</td>
+    <td>用新采集数据重训模型权重与检测阈值，发布前把新模型与原模型的性能指标做比较，并完成验证与确认</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K251456-R2</td><td>BrightHeart View Classifier v1.1</td>
+    <td>新增对 Canon、Fujifilm、SIUI 三家超声机的支持（此前只验证过 GE / P</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K251456-R3</td><td>BrightHeart View Classifier v1.1</td>
+    <td>新增两个标准切面：心室水平短轴、房室瓣水平短轴</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K251456-R4</td><td>BrightHeart View Classifier v1.1</td>
+    <td>重训后直接发布新版本：没有与原模型做性能指标比较，也没有验证与确认记录</td>
+    <td><span class="tag" style="background:#b8791a">hold</span></td></tr><tr><td class="mono">K251456-R5</td><td>BrightHeart View Classifier v1.1</td>
+    <td>把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头）</td>
+    <td><span class="tag" style="background:#a3282a">reject</span></td></tr><tr><td class="mono">K240290-R1</td><td>AiMIFY (MRI contrast enhancement, Subt</td>
+    <td>扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K240290-R2</td><td>AiMIFY</td>
+    <td>新增可选的血管抑制预处理模块（降低血管显影、提升主观图像质量）</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K240290-R3</td><td>AiMIFY</td>
+    <td>为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试</td>
+    <td><span class="tag" style="background:#b8791a">hold</span></td></tr><tr><td class="mono">K240290-R4</td><td>AiMIFY</td>
+    <td>把适应证从脑部 MRI 扩到脊柱 MRI</td>
+    <td><span class="tag" style="background:#a3282a">reject</span></td></tr><tr><td class="mono">K240290-R5</td><td>AiMIFY</td>
+    <td>放宽验收判据（把 CNR 提升阈值下调，以便更容易通过）</td>
+    <td><span class="tag" style="background:#a3282a">reject</span></td></tr><tr><td class="mono">K241561-R1</td><td>MammoScreen BD (breast density, Therap</td>
+    <td>新增 GE 乳腺机支持（无需重训），并以 5 位放射科医师视觉评估做一致性测试，二次加权 k</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K241561-R2</td><td>MammoScreen BD</td>
+    <td>新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据</td>
+    <td><span class="tag" style="background:#1a7f4b">go</span></td></tr><tr><td class="mono">K241561-R3</td><td>MammoScreen BD</td>
+    <td>把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试</td>
+    <td><span class="tag" style="background:#b8791a">hold</span></td></tr><tr><td class="mono">K241561-R4</td><td>MammoScreen BD</td>
+    <td>新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持</td>
+    <td><span class="tag" style="background:#a3282a">reject</span></td></tr></tbody></table>
+<p style="font-size:12.5px;color:var(--mut)">仅显示前 14 行；完整 37 题的正文表与 JSON 在仓库 <span class="mono">candidate_pool/</span> 目录，不依赖 raw 域名。</p>
+
+<hr>
+<h2><span class="n">03</span>"可以宣称"与"不可以宣称"</h2>
+<div class="ok"><b>可以（可被第三方验证）</b>
+<ul><li>归档字节与 Merkle 根可复算，分数在第三方 CI 上可复现。</li>
+<li>背题者分数塌到 0.125，说明这套题考的是判定而非记忆。</li>
+<li>37 道候选题的每条标签都能引到 FDA 决策文件原句。</li></ul></div>
+<div class="warn" style="margin-top:12px"><b>不可以（现在还差）</b>
+<ul><li>不是"已通过独立标注一致性检验"：<b>第二标注人 0 人、κ 未计算</b>。</li>
+<li>不是"已被外部队伍跑过"：<b>外队实跑 0 队</b>。</li>
+<li>不是"临床有效"：这是文本判定台，不测临床效用。</li>
+<li>不是"对 240 条 PCCP 清单的代表抽样"：37 题是便利抽样，不得外推为整体合规率。</li></ul></div>
+
+<hr>
+<h2><span class="n">04</span>两类人，两种入口</h2>
+<div class="grid">
+<div class="card"><h3>你若想跑分（外部队）</h3>
+<ul><li>公开列：五条命令自助跑，无需找我们。</li>
+<li>隐藏列：48 小时内代跑，只回分数与 digest。</li>
+<li>台账公开：跑分结果进 <span class="mono">standings.json</span> 并渲染上表，作废条目要写原因。</li></ul></div>
+<div class="card"><h3>你若想当第二标注人</h3>
+<ul><li>盲标：不给答案、不给 <span class="mono">evidence/</span>，避免被你自己的预期带跑。</li>
+<li>每题必须引一句决定它的原句；引不出来就标 <span class="mono">defect</span>。</li>
+<li>门槛预先写死：κ ≥ 0.60 才可写"实质一致"，0.40–0.59 只能算限制，&lt;0.40 不发论文、改协议不改题。</li></ul></div>
+</div>
+
+<div class="foot">
+数据截至 2026-11-26 · 0.1.3 为现行冻结版本（0.1.0 已作废，旧版字节不动）<br>
+本文档为单文件离线可读；不含任何内网地址或凭据。
+</div>
+</div></body></html>
