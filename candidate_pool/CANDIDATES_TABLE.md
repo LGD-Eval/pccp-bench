@@ -3,7 +3,7 @@
 如果你打不开仓库里的 JSON 文件页（本机测过：blob 页偶发超时），这张表就是同一份内容的可读版。
 每题最后一列是要求你**自己在 PDF 里搜一遍**的原句；搜不到就是我们错了，请直接开 Issue。
 
-分布：`go 13 / hold 7 / reject 16`，共 36 题、7 台器械。
+分布：`go 13 / hold 7 / reject 17`，共 37 题、7 台器械。
 
 ## 超声（15 题）
 
@@ -29,20 +29,21 @@
 
 | 题号 | 器械 | 被改的东西 | 我们的标签 | 要求你自己去 PDF 里搜的原句 | 源文件 |
 |---|---|---|---|---|---|
-| `K240290-R1` | AiMIFY (MRI contrast enhancement, Subtle Medical) | 扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机型 | **go** | Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models. | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
+| `K240290-R1` | AiMIFY (MRI contrast enhancement, Subtle Medical) | 扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机型 | **go** | Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models. … None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY. | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
 | `K240290-R2` | AiMIFY | 新增可选的血管抑制预处理模块（降低血管显影、提升主观图像质量） | **go** | Additionally, an optional pre-processing feature is planned that consists of an algorithm which will suppress vessel enhancement of the AiMIFY AI/ML model … subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device, along with the additional endpoints … | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
 | `K240290-R3` | AiMIFY | 为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试 | **hold** | The AiMIFY AI/ML model is planned to be retrained with additional output channels to reduce processing time, and shall be subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device. | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
 | `K240290-R4` | AiMIFY | 把适应证从脑部 MRI 扩到脊柱 MRI | **reject** | None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY. | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
 | `K240290-R5` | AiMIFY | 放宽验收判据（把 CNR 提升阈值下调，以便更容易通过） | **reject** | None of the changes shall result in a change to the … performance endpoints, or acceptance criteria of AiMIFY. | [K240290](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf) |
 
-## 乳腺摄影（4 题）
+## 乳腺摄影（5 题）
 
 | 题号 | 器械 | 被改的东西 | 我们的标签 | 要求你自己去 PDF 里搜的原句 | 源文件 |
 |---|---|---|---|---|---|
-| `K241561-R1` | MammoScreen BD (breast density, Therapixel) | 新增 GE 乳腺机支持（无需重训），并以 5 位放射科医师视觉评估做一致性测试，二次加权 kappa 须优于 0.85 | **go** | Modification 1: Support of GE mammograms (no re-training required) … Agreement testing against the visual assessment of 5 radiologists on GE mammograms … Quadratic kappa on GE mammograms superior to 0.85. | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
-| `K241561-R2` | MammoScreen BD | 新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据 | **go** | Modification 2: Support of Siemens mammograms (re-training required) … on Siemens mammograms non-inferior to the comparator device (K241561) on Hologic mammograms. | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
-| `K241561-R3` | MammoScreen BD | 把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试 | **hold** | Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) … Agreement testing against the visual assessment of 5 radiologists … | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
-| `K241561-R4` | MammoScreen BD | 新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持 | **reject** | The table below explains, for each Predetermined change, the data used for development/modification and testing, and the monitoring methodology. — 表内仅列 GE、Siemens 与骨干预训练三项。 | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R1` | MammoScreen BD (breast density, Therapixel) | 新增 GE 乳腺机支持（无需重训），并以 5 位放射科医师视觉评估做一致性测试，二次加权 kappa 须优于 0.85 | **go** | Modification 1: Support of GE mammograms (no re-training required) \| Data used for development: No new data collection is foreseen for this change. \| Comprehensive testing for planned changes: Agreement testing against the visual assessment of 5 radiologists on GE mammograms. \| Acceptance criteria: Quadratic kappa on GE mammograms superior to 0.85. | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R2` | MammoScreen BD | 新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据 | **go** | Modification 2: Support of Siemens mammograms (re-training required) \| Data: Siemens, FFDM; Siemens, 2DSM representing the target population \| Testing: Agreement testing against the visual assessment of 5 radiologists on Siemens mammograms. \| Acceptance criteria: linear kappa, accuracy, and density bins (A, B, C and D) on Siemens and Hologic mammograms non-inferior to the comparator device (K241561) on Hologic mammograms. | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R3` | MammoScreen BD | 把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试 | **hold** | Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) \| Testing: Agreement testing against the visual assessment of 5 radiologists on Hologic and new manufacturer(s) mammograms. \| Therapixel monitors customer sites. The distribution of breast density assessment obtained is determined on a representative screening distribution, which serves as a Reference Distribution. Device monitoring compares breast density assessment in real conditions to the reference distribution and alerts of any deviations.（跳过该一致性测试即缺必要条件） | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R4` | MammoScreen BD | 新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持 | **reject** | PCCP including: • Support of GE mammograms (no re-training required) • Support of Siemens mammograms (re-training required) • Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning)（计划表把可改范围限定为这三项；新增 Fujifilm 等未列厂商即范围外） | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
+| `K241561-R5` | MammoScreen BD | 把适用人群从“≥40 岁无症状筛查女性”扩到 40 岁以下或有症状的诊断性乳腺检查 | **reject** | The device is intended to be used in the population of asymptomatic women undergoing screening mammography who are at least 40 years old. | [K241561](https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf) |
 
 ## 牙科 X 光（5 题）
 
