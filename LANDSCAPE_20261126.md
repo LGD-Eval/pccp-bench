@@ -50,7 +50,7 @@
 ## 我们真正独有的三件（都可当场核）
 
 1. **字节可复算**：归档 zip sha256 `5151fe7f…`，27 个文件逐字节对 MANIFEST，Merkle 根在 **GitHub 自己的机器上**复算通过（[CI](https://github.com/LGD-Eval/pccp-bench/actions)），不是我们本机自述。
-2. **分数可复跑**：任何人 `python bench.py --submit adapter_reference.py` 得到 `exact public=0.9688 masked=0.9688`——CI 每次改动都断言这个数，漂了就红。
+2. **分数可复跑**：任何人 `python bench.py --submit adapter_reference.py` 得到 `exact public=0.9688 masked=0.9688`（0.1.3 自身 32 题）——CI 每次改动都断言这个数，漂了就红。
 3. **分歧全公开**：19 条标签与裁判不一致的题，逐题带原句与 PDF 直链（[DISAGREEMENT_37.md](DISAGREEMENT_37.md)）。同类工作没有一家公开自己内部两个部件打架的明细。
 
 ## 结论（不许升级成更强的说法）
