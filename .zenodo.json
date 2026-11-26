@@ -1,9 +1,9 @@
 {
-  "title": "PCCP-Bench: a judgeable, re-runnable test set for PCCP decisions (v0.1.2, scores traceable to raw output)",
-  "description": "42 cases (32 public, 10 held-out commitments). go/hold/reject with a reason tag and the regulatory text cited. v0.1.2 ships the judge closure plus evidence logs behind every score.",
+  "title": "PCCP-Bench: a judgeable, re-runnable test set for PCCP decisions",
+  "description": "42 cases (32 public, 10 held-out commitments). go/hold/reject with reason tag and cited regulatory text. Judge closure and evidence logs ship inside the bundle.",
   "upload_type": "dataset",
   "license": "cc-by-4.0",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "creators": [
     {
       "name": "Zhao, Xinghua"
@@ -16,16 +16,11 @@
     "regulatory science",
     "benchmark"
   ],
-  "doi": "10.5281/zenodo.24551117",
+  "doi": "10.5281/zenodo.24551199",
   "related_identifiers": [
     {
       "identifier": "https://doi.org/10.5281/zenodo.24550266",
       "relation": "isVersionOf",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "https://doi.org/10.5281/zenodo.24550734",
-      "relation": "isPreviousVersionOf",
       "scheme": "doi"
     },
     {
