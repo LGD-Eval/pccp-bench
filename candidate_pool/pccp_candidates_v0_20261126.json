@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "name": "PCCP-Bench candidate pool v0 (unfrozen)",
+    "date": "2026-11-26",
+    "status": "CANDIDATE — not frozen, not published, not part of archive 0.1.3",
+    "annotator": "single (LGD), awaiting independent second annotator per annotation/ANNOTATION_PROTOCOL_v1.md",
+    "rule": "每一道题必须能逐字引到决策文件原句；引不到就不建题",
+    "counts": {"total": 14, "go": 7, "hold": 3, "reject": 4},
+    "sources": [
+      "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K251456.pdf",
+      "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K240290.pdf",
+      "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K241561.pdf"
+    ]
+  },
+  "cases": [
+    {
+      "id": "K251456-R1",
+      "device": "BrightHeart View Classifier v1.1 (fetal ultrasound view classification)",
+      "k_number": "K251456",
+      "family": "ultrasound",
+      "change": "用新采集数据重训模型权重与检测阈值，发布前把新模型与原模型的性能指标做比较，并完成验证与确认",
+      "verdict": "go",
+      "cite": "Modification of training and/or validation datasets to update model weights and detection thresholds … followed by performance testing and a comparison of the original BrightHeart View Classifier to the modified BrightHeart View Classifier (using performance metrics) and verification and validation.",
+      "rule": 5
+    },
+    {
+      "id": "K251456-R2",
+      "device": "BrightHeart View Classifier v1.1",
+      "k_number": "K251456",
+      "family": "ultrasound",
+      "change": "新增对 Canon、Fujifilm、SIUI 三家超声机的支持（此前只验证过 GE / Philips / Samsung / Siemens）",
+      "verdict": "go",
+      "cite": "Modification of data input sources: ultrasound machine make (Canon, Fujifilm, SIUI) — Improvement in the view classification performance with ultrasound machine makes not previously validated.",
+      "rule": 5
+    },
+    {
+      "id": "K251456-R3",
+      "device": "BrightHeart View Classifier v1.1",
+      "k_number": "K251456",
+      "family": "ultrasound",
+      "change": "新增两个标准切面：心室水平短轴、房室瓣水平短轴",
+      "verdict": "go",
+      "cite": "Addition of standard views (short-axis view at the level of the ventricles and short-axis view at the level of the atrioventricular valves).",
+      "rule": 5
+    },
+    {
+      "id": "K251456-R4",
+      "device": "BrightHeart View Classifier v1.1",
+      "k_number": "K251456",
+      "family": "ultrasound",
+      "change": "重训后直接发布新版本：没有与原模型做性能指标比较，也没有验证与确认记录",
+      "verdict": "hold",
+      "cite": "… followed by performance testing and a comparison of the original … to the modified … (using performance metrics) and verification and validation.",
+      "rule": 3,
+      "note": "PCCP 把“比较 + 验证”写成该类的必要条件；缺步骤即不满足，但不是范围外"
+    },
+    {
+      "id": "K251456-R5",
+      "device": "BrightHeart View Classifier v1.1",
+      "k_number": "K251456",
+      "family": "ultrasound",
+      "change": "把适用范围扩到经阴道探头（原器械仅验证并仅限经腹探头）",
+      "verdict": "reject",
+      "cite": "BrightHeart View Classifier was validated with pregnancies at 18 weeks of gestation or later recorded with transabdominal probes and is intended to be used only for such examinations.",
+      "rule": 1,
+      "note": "PCCP 四条修改均未涉及探头类型；范围外即新申报"
+    },
+    {
+      "id": "K240290-R1",
+      "device": "AiMIFY (MRI contrast enhancement, Subtle Medical)",
+      "k_number": "K240290",
+      "family": "mri",
+      "change": "扩充训练与性能数据：增加钆对比剂种类、增加患者年龄（婴幼儿与儿童）、增加临床病种、增加扫描机型",
+      "verdict": "go",
+      "cite": "Improvements planned include additional training and/or performance data to add more gadolinium-based contrast agents, add additional patient ages (infants and children), add additional clinical conditions, and add additional scanner models.",
+      "rule": 5
+    },
+    {
+      "id": "K240290-R2",
+      "device": "AiMIFY",
+      "k_number": "K240290",
+      "family": "mri",
+      "change": "新增可选的血管抑制预处理模块（降低血管显影、提升主观图像质量）",
+      "verdict": "go",
+      "cite": "Additionally, an optional pre-processing feature is planned that consists of an algorithm which will suppress vessel enhancement of the AiMIFY AI/ML model … subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device, along with the additional endpoints …",
+      "rule": 5
+    },
+    {
+      "id": "K240290-R3",
+      "device": "AiMIFY",
+      "k_number": "K240290",
+      "family": "mri",
+      "change": "为缩短处理时间改用增加输出通道的重训模型，但未按原端点与验收判据重做性能测试",
+      "verdict": "hold",
+      "cite": "The AiMIFY AI/ML model is planned to be retrained with additional output channels to reduce processing time, and shall be subject to the same performance testing endpoints and acceptance criteria as the cleared version of the device.",
+      "rule": 3
+    },
+    {
+      "id": "K240290-R4",
+      "device": "AiMIFY",
+      "k_number": "K240290",
+      "family": "mri",
+      "change": "把适应证从脑部 MRI 扩到脊柱 MRI",
+      "verdict": "reject",
+      "cite": "None of the changes shall result in a change to the Indications for Use, Cautions, performance endpoints, or acceptance criteria of AiMIFY.",
+      "rule": 1
+    },
+    {
+      "id": "K240290-R5",
+      "device": "AiMIFY",
+      "k_number": "K240290",
+      "family": "mri",
+      "change": "放宽验收判据（把 CNR 提升阈值下调，以便更容易通过）",
+      "verdict": "reject",
+      "cite": "None of the changes shall result in a change to the … performance endpoints, or acceptance criteria of AiMIFY.",
+      "rule": 2
+    },
+    {
+      "id": "K241561-R1",
+      "device": "MammoScreen BD (breast density, Therapixel)",
+      "k_number": "K241561",
+      "family": "mammography",
+      "change": "新增 GE 乳腺机支持（无需重训），并以 5 位放射科医师视觉评估做一致性测试，二次加权 kappa 须优于 0.85",
+      "verdict": "go",
+      "cite": "Modification 1: Support of GE mammograms (no re-training required) … Agreement testing against the visual assessment of 5 radiologists on GE mammograms … Quadratic kappa on GE mammograms superior to 0.85.",
+      "rule": 5
+    },
+    {
+      "id": "K241561-R2",
+      "device": "MammoScreen BD",
+      "k_number": "K241561",
+      "family": "mammography",
+      "change": "新增 Siemens 乳腺机支持（需重训），并以非劣于已放行器械为验收判据",
+      "verdict": "go",
+      "cite": "Modification 2: Support of Siemens mammograms (re-training required) … on Siemens mammograms non-inferior to the comparator device (K241561) on Hologic mammograms.",
+      "rule": 5
+    },
+    {
+      "id": "K241561-R3",
+      "device": "MammoScreen BD",
+      "k_number": "K241561",
+      "family": "mammography",
+      "change": "把骨干网络改为无监督预训练（计划内），但跳过与 5 位放射科医师的一致性测试",
+      "verdict": "hold",
+      "cite": "Modification 3: Pre-training of backbone using Unsupervised Machine Learning (as opposed to Supervised Machine Learning) … Agreement testing against the visual assessment of 5 radiologists …",
+      "rule": 3
+    },
+    {
+      "id": "K241561-R4",
+      "device": "MammoScreen BD",
+      "k_number": "K241561",
+      "family": "mammography",
+      "change": "新增一个计划里没写的厂商（如 Fujifilm）的乳腺机支持",
+      "verdict": "reject",
+      "cite": "The table below explains, for each Predetermined change, the data used for development/modification and testing, and the monitoring methodology. — 表内仅列 GE、Siemens 与骨干预训练三项。",
+      "rule": 1,
+      "note": "计划未列即范围外；不能类推到“别的厂商也一样”"
+    }
+  ]
+}
